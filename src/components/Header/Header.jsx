@@ -10,14 +10,14 @@ export const Header = () => ({
         <div className="header-section">
           <h1>QUICK QUOTE</h1>
           <header>
-            <NavLink to='/inspire' className='nav'>Inspiring</NavLink>
-            <NavLink to='/management' className='nav'>Management</NavLink>
-            <NavLink to='/sports' className='nav'>Sports</NavLink>
-            <NavLink to='/life' className='nav'>Life</NavLink>
-            <NavLink to='/funny' className='nav'>Funny</NavLink>
-            <NavLink to='/love' className='nav'>Love</NavLink>
-            <NavLink to='/art' className='nav'>Art</NavLink>
-            <NavLink to='/students' className='nav'>Students</NavLink>
+            <NavLink to='/quick-quotes/inspire' className='nav'>Inspiring</NavLink>
+            <NavLink to='/quick-quotes/management' className='nav'>Management</NavLink>
+            <NavLink to='/quick-quotes/sports' className='nav'>Sports</NavLink>
+            <NavLink to='/quick-quotes/life' className='nav'>Life</NavLink>
+            <NavLink to='/quick-quotes/funny' className='nav'>Funny</NavLink>
+            <NavLink to='/quick-quotes/love' className='nav'>Love</NavLink>
+            <NavLink to='/quick-quotes/art' className='nav'>Art</NavLink>
+            <NavLink to='/quick-quotes/students' className='nav'>Students</NavLink>
           </header>
         </div>
       </div>
