@@ -1,34 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import Card from '../Card/Card';
+import { Route, NavLink, Link } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      name: '',
-      body: ''
-    }
-  }
-
-  handleInput = (e) => {
-    this.setState({
-       [e.target.name]: e.target.value
-    })
-
-  }
-  
   render() {
     return (
-      <div className="App">
-        <form>
-          <input value={this.state.name} name="name" onChange={this.handleInput} type="text" />
-          <input value={this.state.body} name="body" onChange={this.handleInput} type="text"/>
-          <button>Submit</button>
-        </form>
+      <div className="App" >
+        <Header />
+        
+        
       </div>
     );
   }
 }
+
+// App.propTypes = {
+
+// };
 
 export default App;
