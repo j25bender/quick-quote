@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from '../Header/Header';
-import Main from '../Main/Main';
+import Random from '../Random/Random';
 import Card from '../Card/Card';
+import Home from '../Home/Home';
 import Category from '../Category/Category';
-import { fetchRandomQuote, fetchQuoteCategories } from '../../api/apiCalls';
-import { Route, NavLink, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-class App extends Component {
-
-  componentDidMount() {
-    const categoryFetch = fetchQuoteCategories();
-    
-    console.log('catFish', categoryFetch)
-  }
+export class App extends Component {
   
   render() {
     return (
       <div className="App" >
         <Header />
-        <Route path='/quick-quotes/inspire' component={ Category } />
+        <Route exact path='/' component={ Home } />
+        <Route exact path='/home' component={ Home } />
+        <Route exact path='/random' component={ Random } />
+        <Route exact path='/motivation' component={ Category } />
+        <Route exact path='/positive' component={ Category } />
+        <Route exact path='/life' component={ Category } />
+        <Route exact path='/funny' component={ Category } />
+        <Route exact path='/love' component={ Category } />
+        <Route exact path='/students' component={ Category } />
+        <Route exact path='/inspiration' component={ Category } />
+        <Route exact path='/meditation' component={ Category } />
       </div>
     );
   }
