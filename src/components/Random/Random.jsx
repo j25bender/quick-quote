@@ -14,7 +14,7 @@ export class Random extends Component {
 
   render() {
     const { randomQuote } = this.props;  
-    const categories = randomQuote.quote ? randomQuote.categories.map( (cat, i) => <p key={ i }>{ cat }</p>)                                       : null;
+    const categories = randomQuote.id ? randomQuote.categories.map( (cat, i) => <p key={ i }>{ cat }</p>)                                       : null;
     return (
       <div className="random-quote-container">
         <h1 className="random-quote">{ randomQuote.quote }</h1>

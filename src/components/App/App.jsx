@@ -12,14 +12,20 @@ import { connect } from 'react-redux';
 export class App extends Component {
   
   render() {
-    const { randomQuote } = this.props;
     return (
       <div className="App" >
         <Header />
-        <Route path='/' component={ Category } />
         <Route exact path='/' component={ Home } />
         <Route exact path='/home' component={ Home } />
         <Route exact path='/random' component={ Random } />
+        <Route exact path='/motivation' component={ Category } />
+        <Route exact path='/positive' component={ Category } />
+        <Route exact path='/life' component={ Category } />
+        <Route exact path='/funny' component={ Category } />
+        <Route exact path='/love' component={ Category } />
+        <Route exact path='/students' component={ Category } />
+        <Route exact path='/inspiration' component={ Category } />
+        <Route exact path='/meditation' component={ Category } />
       </div>
     );
   }

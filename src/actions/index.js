@@ -8,4 +8,7 @@ export const addHomeQuote = (homeQuoteToDispatch) => ({
   homeQuoteToDispatch
 });
 
-
+export const addCategoryQuote = (categoryQuoteToDispatch) => ({
+  type: 'ADD_CATEGORY_QUOTE',
+  categoryQuoteToDispatch
+});

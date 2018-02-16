@@ -44,16 +44,22 @@ export const fetchHomeQuote = async () => {
   }
 }
 
-export const fetchQuoteCategories = async () => {
+export const fetchQuoteCategories = async (category) => {
   try {
-    const initialCategoriesFetch = await fetch('http://quotes.rest/quote/categories', {
+    const initialCategoriesFetch = await fetch(`http://quotes.rest/quote/search?category=${category}&minlength=100&maxlength=300&private=false`, {
       method: 'GET',
       headers: {
         'X-TheySaidSo-Api-Secret': apiKey,
         'Accept': 'application/json'
       }
     })
-    return initialCategoriesFetch.json();
+    const categoryQuoteJson = await initialCategoriesFetch.json();
+    const quote = categoryQuoteJson.contents.quote;
+    const author = categoryQuoteJson.contents.author;
+    const id = categoryQuoteJson.contents.id;
+    const categories = categoryQuoteJson.contents.categories;
+
+    return { quote, author, id, categories }
 
   } catch(error) {
     throw new Error(`fetchQuoteCategories failed to fetch due to: ${error}`)
