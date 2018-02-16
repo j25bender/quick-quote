@@ -4,30 +4,44 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Card from '../Card/Card';
 import Category from '../Category/Category';
-import { fetchRandomQuote, fetchQuoteCategories } from '../../api/apiCalls';
+import { fetchQuoteOfTheDay, fetchRandomQuote, fetchQuoteCategories } from '../../api/apiCalls';
 import { Route, NavLink, Link } from 'react-router-dom';
+import { addRandomQuote } from '../../actions';
+import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 
-class App extends Component {
+export class App extends Component {
 
-  componentDidMount() {
-    const categoryFetch = fetchQuoteCategories();
-    
-    console.log('catFish', categoryFetch)
+  async componentDidMount() {
+    const randomQuoteToDispatch = await fetchRandomQuote();
+    this.props.addRandomQuote(randomQuoteToDispatch)
+    // console.log('catFish', randomQuoteToDispatch)
   }
   
   render() {
+    const { randomQuote } = this.props;
     return (
       <div className="App" >
-        <Header />
-        <Route path='/quick-quotes/inspire' component={ Category } />
+        <Route path='/' component={ Header } />
+        <Route exact path='/main' component={ Main } />
+        <Route exact path='/inspire' render={({ match }) => 
+          <Category />
+        } />
       </div>
     );
   }
 }
 
+export const mapStateToProps = (state) => ({
+  randomQuote: state.randomQuote
+})
+
+export const mapDispatchToProps = (dispatch) => ({
+  addRandomQuote: (randomQuoteToDispatch) => dispatch(addRandomQuote(randomQuoteToDispatch))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
 // App.propTypes = {
 
 // };
-
-export default App;

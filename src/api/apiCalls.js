@@ -9,7 +9,13 @@ export const fetchRandomQuote = async () => {
         'Accept': 'application/json'
       }
     })
-    return initialRandomFetch.json();
+    const randomQuoteJson = await initialRandomFetch.json();
+    const quote = randomQuoteJson.contents.quote;
+    const author = randomQuoteJson.contents.author;
+    const id = randomQuoteJson.contents.id;
+    const categories = randomQuoteJson.contents.categories;
+
+    return { quote, author, id, categories }
 
   } catch(error) {
     throw new Error(`fetchRandomQuote failed to fetch due to: ${error}`)
@@ -32,4 +38,18 @@ export const fetchQuoteCategories = async () => {
   }
 }
 
+export const fetchQuoteOfTheDay = async () => {
+  try {
+    const initialQuoteOfDayFetch = await fetch('http://quotes.rest/qod.json', {
+      method: 'GET',
+      headers: {
+        'X-TheySaidSo-Api-Secret': apiKey,
+        'Accept': 'application/json'
+      }
+    })
+    return initialQuoteOfDayFetch.json();
 
+  } catch(error) {
+    throw new Error(`fetchQuoteOfTheDay failed to fetch due to: ${error}`)
+  }
+}
