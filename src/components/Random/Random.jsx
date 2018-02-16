@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import './Main.css'
+import './Random.css'
 import { connect } from 'react-redux';
+import { fetchRandomQuote } from '../../api/apiCalls';
+import { addRandomQuote } from '../../actions';
 import PropTypes from 'prop-types';
 
-export class Main extends Component {
+export class Random extends Component {
+
+  async componentDidMount() {    
+    const randomQuoteToDispatch = await fetchRandomQuote();
+    this.props.addRandomQuote(randomQuoteToDispatch)
+  }
 
   render() {
     const { randomQuote } = this.props;  
@@ -20,11 +27,15 @@ export class Main extends Component {
 
 export const mapStateToProps = (state) => ({
   randomQuote: state.randomQuote
+});
+
+export const mapDispatchToProps = (dispatch) => ({
+  addRandomQuote: (randomQuoteToDispatch) => dispatch(addRandomQuote(randomQuoteToDispatch))
 })
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Random);
 
-Main.propTypes = {
+Random.propTypes = {
   randomQuote: PropTypes.shape({
     quote: PropTypes.string,
     author: PropTypes.string,

@@ -10,7 +10,6 @@ import rootReducer from './reducers'
 import { logger } from 'redux-logger';
 
 const store = createStore( rootReducer, applyMiddleware(logger) )
-console.log('store', store);
 
 const router = (
   <BrowserRouter>

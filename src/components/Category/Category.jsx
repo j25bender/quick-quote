@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { fetchQuoteCategories } from '../../api/apiCalls';
 // import PropTypes from 'prop-types';
 
-export const Category = () => ({
+export class Category extends Component {
+
+  async componentDidMount() {
+    const cats = await fetchQuoteCategories();
+    
+    console.log('cats', cats)
+    
+  }
+  
   render() {
     return (
       <div>
@@ -9,7 +18,7 @@ export const Category = () => ({
       </div>
     );
   }
-})
+}
 
 // Category.propTypes = {
 

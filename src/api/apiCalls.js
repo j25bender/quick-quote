@@ -20,6 +20,28 @@ export const fetchRandomQuote = async () => {
   } catch(error) {
     throw new Error(`fetchRandomQuote failed to fetch due to: ${error}`)
   }
+} 
+
+export const fetchHomeQuote = async () => {
+  try {
+    const initialMax100Fetch = await fetch('http://quotes.rest/quote/search.json?maxlength=100', {
+      method: 'GET',
+      headers: {
+        'X-TheySaidSo-Api-Secret': apiKey,
+        'Accept': 'application/json'
+      }
+    })
+    const max100Json = await initialMax100Fetch.json();
+    const quote = max100Json.contents.quote;
+    const author = max100Json.contents.author;
+    const id = max100Json.contents.id;
+    const categories = max100Json.contents.categories;
+
+    return { quote, author, id, categories }
+
+  } catch(error) {
+    throw new Error(`fetchHomeQuote failed to fetch due to: ${error}`)
+  }
 }
 
 export const fetchQuoteCategories = async () => {

@@ -3,3 +3,9 @@ export const addRandomQuote = (randomQuoteToDispatch) => ({
   randomQuoteToDispatch
 });
 
+export const addHomeQuote = (homeQuoteToDispatch) => ({
+  type: 'ADD_HOME_QUOTE',
+  homeQuoteToDispatch
+});
+
+
