@@ -13,6 +13,14 @@ export class Category extends Component {
     const categoryQuoteToDispatch = await fetchQuoteCategories(cleanCategory);
     this.props.addCategoryQuote(categoryQuoteToDispatch);
   }
+
+  async handleClick() {
+    const { categoryQuote } = this.props;
+    const categoryArray = categoryQuote.categories;
+    const randomValue = categoryArray.length !== 1 ? categoryArray[ Math.floor( Math.random() * categoryArray.length ) ] : 'funny';
+    const newCategoryToDispatch = await fetchQuoteCategories(randomValue);
+    this.props.addCategoryQuote(newCategoryToDispatch);    
+  }
   
   render() {
     const { categoryQuote } = this.props;
@@ -22,6 +30,7 @@ export class Category extends Component {
         <h1 className="category-quote">{ categoryQuote.quote }</h1>
         <h2 className="category-quote-author">{ categoryQuote.author }</h2>
         <div className="categories">{ categories }</div>
+        <button onClick={ () => this.handleClick() }></button>
       </div>
     );
   }
