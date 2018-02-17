@@ -3,6 +3,7 @@ import './Category.css';
 import { connect } from 'react-redux';
 import { addCategoryQuote } from '../../actions';
 import { fetchQuoteCategories } from '../../api/apiCalls';
+import Card from '../Card/Card';
 // import PropTypes from 'prop-types';
 
 export class Category extends Component {
@@ -18,19 +19,18 @@ export class Category extends Component {
     const { categoryQuote } = this.props;
     const categoryArray = categoryQuote.categories;
     const randomValue = categoryArray.length !== 1 ? categoryArray[ Math.floor( Math.random() * categoryArray.length ) ] : 'funny';
-    const newCategoryToDispatch = await fetchQuoteCategories(randomValue);
-    this.props.addCategoryQuote(newCategoryToDispatch);    
+    const categoryQuoteToDispatch = await fetchQuoteCategories(randomValue);
+    this.props.addCategoryQuote(categoryQuoteToDispatch);    
   }
   
   render() {
     const { categoryQuote } = this.props;
-    const categories = categoryQuote.id ? categoryQuote.categories.map( (cat, i) => <p key={ i }>{ cat }</p>) : null;
+    const categoryCards = categoryQuote.map( (quote) =>  console.log(quote))
+    // <Card key={ quote.id } data={ quote } />
+    console.log('cats', categoryQuote)
     return (
-      <div className="category-quote-container">
-        <h1 className="category-quote">{ categoryQuote.quote }</h1>
-        <h2 className="category-quote-author">{ categoryQuote.author }</h2>
-        <div className="categories">{ categories }</div>
-        <button onClick={ () => this.handleClick() }></button>
+      <div className="quote-container">
+        'dogs'
       </div>
     );
   }
