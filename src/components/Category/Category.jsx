@@ -8,29 +8,30 @@ import Card from '../Card/Card';
 
 export class Category extends Component {
 
-  async componentDidMount() {
-    const pathnameProp = await this.props.location.pathname;
-    const cleanCategory = await pathnameProp.slice(1);
-    const categoryQuoteToDispatch = await fetchQuoteCategories(cleanCategory);
-    this.props.addCategoryQuote(categoryQuoteToDispatch);
+  componentDidMount() {
+    const pathnameProp = this.props.location.pathname;
+    const cleanCategory = pathnameProp.slice(1);
+    this.fetchAndDispatch(cleanCategory);
   }
 
-  async handleClick() {
-    const { categoryQuote } = this.props;
-    const categoryArray = categoryQuote.categories;
-    const randomValue = categoryArray.length !== 1 ? categoryArray[ Math.floor( Math.random() * categoryArray.length ) ] : 'funny';
-    const categoryQuoteToDispatch = await fetchQuoteCategories(randomValue);
-    this.props.addCategoryQuote(categoryQuoteToDispatch);    
+  handleClick(categories) {
+    const randomValue = categories.length !== 1 ? categories[ Math.floor( Math.random() * categories.length ) ] : 'funny';
+    this.fetchAndDispatch(randomValue);
+  }
+
+  async fetchAndDispatch(category) {
+    const categoryQuoteToDispatch = await fetchQuoteCategories(category);
+    this.props.addCategoryQuote(categoryQuoteToDispatch);
   }
   
   render() {
     const { categoryQuote } = this.props;
-    const categoryCards = categoryQuote.map( (quote) =>  console.log(quote))
-    // <Card key={ quote.id } data={ quote } />
-    console.log('cats', categoryQuote)
+    const categoryCards = categoryQuote.map( (quoteData) => <Card key={ quoteData.id } 
+                                                                  data={ quoteData } 
+                                                                  newQuote={ this.handleClick.bind(this) } /> )
     return (
       <div className="quote-container">
-        'dogs'
+        { categoryCards }
       </div>
     );
   }
