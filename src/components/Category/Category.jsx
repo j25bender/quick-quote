@@ -45,24 +45,6 @@ export class Category extends Component {
       return [ ...categoryQuote, categoryQuoteToDispatch ];
     }
   }
-
-  // async renderCards(stateObject, newQuote) {
-  //   const cardType = await stateObject;
-  //   // console.log('ct', await cardType)
-  //   const combo = [...cardType, newQuote ]
-  //   if(combo) {
-  //     // console.log('combo', combo)
-
-  //     const dummydata = [{author: "Ralph Waldo Emerson", categories: ["courage", "virtues"], quote: "do the thing!", id: "2eNh2vR9NCONZwEn8PVPIgeF"}]
-  //     const cardsToRender = await dummydata.map( (quoteData) => <Card key={ quoteData.id } data={ quoteData } newQuote={ this.handleClick } />
-      
-  //   )
-  //   // console.log('cardstorender', cardsToRender)
-    
-  //   return await combo
-      
-  //   }
-  // }
   
   render() {
     const { homeQuote, randomQuote, categoryQuote } = this.props;
