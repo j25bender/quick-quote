@@ -45,8 +45,9 @@ export const fetchHomeQuote = async () => {
 }
 
 export const fetchQuoteCategories = async (category) => {
+  const maxLength = Math.floor( (Math.random() * 300) + 100 );
   try {
-    const initialCategoriesFetch = await fetch(`http://quotes.rest/quote/search?category=${category}&minlength=100&maxlength=300&private=false`, {
+    const initialCategoriesFetch = await fetch(`http://quotes.rest/quote/search?category=${category}&minlength=100&maxlength=${maxLength}&private=false`, {
       method: 'GET',
       headers: {
         'X-TheySaidSo-Api-Secret': apiKey,

@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 export class Random extends Component {
 
   async componentDidMount() {    
-    const randomQuoteToDispatch = await fetchRandomQuote();
-    this.props.addRandomQuote(randomQuoteToDispatch)
+    // const randomQuoteToDispatch = await fetchRandomQuote();
+    // this.props.addRandomQuote(randomQuoteToDispatch)
   }
 
   render() {

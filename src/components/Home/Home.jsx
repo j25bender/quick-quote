@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 export class Home extends Component {
 
   async componentDidMount() {
-    const homeQuoteToDispatch = await fetchHomeQuote();
-    this.props.addHomeQuote(homeQuoteToDispatch)
+    // const homeQuoteToDispatch = await fetchHomeQuote();
+    // this.props.addHomeQuote(homeQuoteToDispatch)
   }
 
   render() {
@@ -35,11 +35,11 @@ export const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
-Home.propTypes = {
-  homeQuote: PropTypes.shape({
-    quote: PropTypes.string,
-    author: PropTypes.string,
-    id: PropTypes.string,
-    categories: PropTypes.arrayOf(PropTypes.string)
-  })
-}
+// Home.propTypes = {
+//   homeQuote: PropTypes.shape({
+//     quote: PropTypes.string,
+//     author: PropTypes.string,
+//     id: PropTypes.string,
+//     categories: PropTypes.arrayOf(PropTypes.string)
+//   })
+// }

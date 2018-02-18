@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette|Kaushan+Script|Special+Elite');
+
+.quote-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  text-align: center;
+  font-family: 'Special Elite', cursive;
+}
+
+.categories {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.categories p {
+  padding: 5px 5px;
+  font-size: 15px;
+}
+
+.nonFavorite {
+  border: 1px black solid;
+  width: 300px;
+  height: 325;
+  padding: 25px;
+  margin: 20px;
+}
+
+.nonFavorite {
+  line-height: 2;
+  font-size: 18px;
+  background-color: ghostwhite;
+}
+
+.nonFavorite button {
+  font-size: 18px;
+}
