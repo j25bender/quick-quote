@@ -15,9 +15,9 @@ export class App extends Component {
     return (
       <div className="App" >
         <Header />
-        <Route exact path='/' component={ Home } />
-        <Route exact path='/home' component={ Home } />
-        <Route exact path='/random' component={ Random } />
+        <Route exact path='/' component={ Category } />
+        <Route exact path='/home' component={ Category } />
+        <Route exact path='/random' component={ Category } />
         <Route exact path='/motivation' component={ Category } />
         <Route exact path='/positive' component={ Category } />
         <Route exact path='/life' component={ Category } />

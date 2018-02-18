@@ -1,7 +1,7 @@
-export const homeQuoteReducer = (state = {}, action) => {
+export const homeQuoteReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_HOME_QUOTE':
-      return action.homeQuoteToDispatch;
+      return [ ...state, action.homeQuoteToDispatch ];
     default: 
       return state;
   }

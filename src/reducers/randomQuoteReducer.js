@@ -1,7 +1,7 @@
-export const randomQuoteReducer = (state = {}, action) => {
+export const randomQuoteReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_RANDOM_QUOTE':
-      return action.randomQuoteToDispatch;
+      return [ ...state, action.randomQuoteToDispatch ];
     default: 
       return state;
   }
