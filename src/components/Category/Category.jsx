@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Category.css';
-import { connect } from 'react-redux';
 import { addHomeQuote, addRandomQuote, addCategoryQuote } from '../../actions';
 import { fetchHomeQuote, fetchRandomQuote, fetchQuoteCategories } from '../../api/apiCalls';
 import Card from '../Card/Card';
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 export class Category extends Component {
 
@@ -29,16 +29,18 @@ export class Category extends Component {
   }
 
   async fetchAndDispatch(category) {
-    console.log('carts', category)
     const { homeQuote, randomQuote, categoryQuote } = this.props;
+
     if( category === 'home' ) {
       const homeQuoteToDispatch = await fetchHomeQuote();
       this.props.addHomeQuote(homeQuoteToDispatch);
       return [ ...homeQuote, homeQuoteToDispatch ];
+
     } else if ( category === 'random' ) {
       const randomQuoteToDispatch = await fetchRandomQuote();
       this.props.addRandomQuote(randomQuoteToDispatch);
       return [ ...randomQuote, randomQuoteToDispatch ];
+      
     } else {
       const categoryQuoteToDispatch = await fetchQuoteCategories(category);
       this.props.addCategoryQuote(categoryQuoteToDispatch);
@@ -52,17 +54,14 @@ export class Category extends Component {
 
       if(pathnameProp.includes('random')) {
         const randomCards = randomQuote.map( quote => <Card key={ quote.id } data={ quote } handleClick={ this.handleClick } /> )
-        console.log(randomCards)
         return <div>{ randomCards }</div>
 
       } else if (pathnameProp.includes('home')) {
         const homeCards = homeQuote.map( quote => <Card key={ quote.id } data={ quote } handleClick={ this.handleClick } /> )
-        console.log(homeCards)
         return <div>{ homeCards }</div>
 
       } else if (pathnameProp !== 'random' && pathnameProp !== 'home') {
         const categoryCards = categoryQuote.map( quote => <Card key={ quote.id } data={ quote } handleClick={ this.handleClick } /> )
-        console.log(categoryCards)
         return <div>{ categoryCards }</div>
       }
 
@@ -84,8 +83,33 @@ export const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
 
-// Category.propTypes = {
+Category.propTypes = {
+  addHomeQuote: PropTypes.func.isRequired,
+  addRandomQuote: PropTypes.func.isRequired,
+  addCategoryQuote: PropTypes.func.isRequired,
 
-// };
+  homeQuote: PropTypes.arrayOf(PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string)
+  })).isRequired,
 
+  randomQuote: PropTypes.arrayOf(PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string)
+  })).isRequired,
 
+  categoryQuote: PropTypes.arrayOf(PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string)
+  })).isRequired,
+
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};

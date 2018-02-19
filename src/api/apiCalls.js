@@ -66,19 +66,3 @@ export const fetchQuoteCategories = async (category) => {
     throw new Error(`fetchQuoteCategories failed to fetch due to: ${error}`)
   }
 }
-
-export const fetchQuoteOfTheDay = async () => {
-  try {
-    const initialQuoteOfDayFetch = await fetch('http://quotes.rest/qod.json', {
-      method: 'GET',
-      headers: {
-        'X-TheySaidSo-Api-Secret': apiKey,
-        'Accept': 'application/json'
-      }
-    })
-    return initialQuoteOfDayFetch.json();
-
-  } catch(error) {
-    throw new Error(`fetchQuoteOfTheDay failed to fetch due to: ${error}`)
-  }
-}
