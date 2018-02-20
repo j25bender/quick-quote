@@ -23,8 +23,9 @@ export const fetchRandomQuote = async () => {
 } 
 
 export const fetchHomeQuote = async () => {
+  const maxLength = Math.floor( (Math.random() * 300) + 100 );
   try {
-    const initialMax100Fetch = await fetch('http://quotes.rest/quote/search.json?maxlength=100', {
+    const initialMax100Fetch = await fetch(`http://quotes.rest/quote/search.json?maxlength=${maxLength}`, {
       method: 'GET',
       headers: {
         'X-TheySaidSo-Api-Secret': apiKey,
