@@ -4,7 +4,7 @@ import { randomQuoteReducer } from './randomQuoteReducer';
 import { homeQuoteReducer } from './homeQuoteReducer';
 import { categoryQuoteReducer } from './categoryQuoteReducer';
 
-describe('reducers Tests', () => {
+describe('Reducers Tests', () => {
   const rootReducer = combineReducers({ randomQuoteReducer, 
                                         homeQuoteReducer, 
                                         categoryQuoteReducer 
