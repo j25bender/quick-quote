@@ -1,9 +1,9 @@
 import React from 'react';
 import './Card.css'
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const Card = (props) => {
-  const { quote, author, categories } = props.data;
+  const { quote, author = "~ Anonymous", categories } = props.data;
   const cardHtml = <div><h4 className="quote">{ quote }</h4><h5 className="author">{ author }</h5></div>
   if(props) {
     const favoriteCheck = props.data.favorite ? "favorite" : "nonFavorite";
@@ -20,7 +20,15 @@ const Card = (props) => {
   }
 }
 
-// Card.propTypes = {
-
-// };
 export default Card;
+
+Card.propTypes = {
+  data: PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string)
+  }).isRequired,
+
+  handleClick: PropTypes.func.isRequired
+};

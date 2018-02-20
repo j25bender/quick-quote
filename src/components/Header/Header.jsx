@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 
 export class Header extends Component {
-
   render() {
     return (
       <div>
@@ -27,9 +25,5 @@ export class Header extends Component {
     );
   }
 }
-
-// Header.propTypes = {
-
-// };
 
 export default Header;
