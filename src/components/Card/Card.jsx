@@ -20,15 +20,15 @@ const Card = (props) => {
   }
 }
 
-export default Card;
-
 Card.propTypes = {
   data: PropTypes.shape({
     quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
+    author: PropTypes.string,
     id: PropTypes.string.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string)
   }).isRequired,
 
   handleClick: PropTypes.func.isRequired
 };
+
+export default Card;

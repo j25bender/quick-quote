@@ -45,7 +45,7 @@ export const fetchHomeQuote = async () => {
   }
 }
 
-export const fetchQuoteCategories = async (category) => {
+export const fetchQuote = async (category) => {
   const maxLength = Math.floor( (Math.random() * 300) + 100 );
   try {
     const initialCategoriesFetch = await fetch(`http://quotes.rest/quote/search?category=${category}&minlength=100&maxlength=${maxLength}&private=false`, {
@@ -64,6 +64,6 @@ export const fetchQuoteCategories = async (category) => {
     return { quote, author, id, categories }
 
   } catch(error) {
-    throw new Error(`fetchQuoteCategories failed to fetch due to: ${error}`)
+    throw new Error(`fetchQuote failed to fetch due to: ${error}`)
   }
 }
