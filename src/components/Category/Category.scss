@@ -1,38 +1,55 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|Kaushan+Script|Special+Elite');
 
-.quote-container {
+.nonFavorite {
+  width: 100vw;
+  height: 100vh;
+}
+
+.nonFavorite {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
   text-align: center;
-  font-family: 'Special Elite', cursive;
-}
-
-.categories {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-}
-
-.categories p {
-  padding: 5px 5px;
-  font-size: 15px;
-}
-
-.nonFavorite {
-  border: 1px black solid;
-  width: 300px;
-  height: 325;
-  padding: 25px;
-  margin: 20px;
-}
-
-.nonFavorite {
   line-height: 2;
-  font-size: 18px;
-  background-color: ghostwhite;
+  font-size: 30px;
+  text-shadow: 1px 1px ghostwhite;
+  font-weight: bold;
+  $imgKey: random(11);
+  background-image: url('../../assets/landscape#{$imgKey}.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.nonFavorite div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  text-align: center;
+}
+
+.categories,
+.quote,
+.author {
+  max-width: 80%;
+  overflow-y: hidden;
 }
 
 .nonFavorite button {
   font-size: 18px;
+}
+
+div.categories {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+div.categories p {
+  font-size: 20px;
+  padding: 5px 5px;
+  font-size: 15px;
+  overflow-y: hidden;
 }

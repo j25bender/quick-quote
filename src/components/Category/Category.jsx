@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Category.css';
-import { addHomeQuote, addRandomQuote, addCategoryQuote } from '../../actions';
-import { fetchHomeQuote, fetchRandomQuote, fetchQuoteCategories } from '../../api/apiCalls';
+import { addHomeQuote, addRandomQuote, addCategoryQuote, addFavorite } from '../../actions';
+import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls';
 import Card from '../Card/Card';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,123 +9,147 @@ import PropTypes from 'prop-types';
 export class Category extends Component {
 
   componentDidMount() {
-    const pathnameProp = this.props.location.pathname;    
-    const cleanCategory = pathnameProp.slice(1);
-    this.fetchAndDispatch(cleanCategory);
+    try {
+      const pathnameProp = this.props.location.pathname;    
+      const cleanCategory = pathnameProp.slice(1);
+      this.fetchAndDispatch(cleanCategory);
+    } catch(error) {
+      //handle the error 404 fail message from state
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.location !== nextProps.location) {
-      const pathnameProp = nextProps.location.pathname;    
-      const cleanCategory = pathnameProp.slice(1);
-      this.fetchAndDispatch(cleanCategory);
+    try {
+      if(this.props.location.key !== nextProps.location.key) {
+        const pathnameProp = nextProps.location.pathname;
+        const cleanCategory = pathnameProp.slice(1);
+        this.fetchAndDispatch(cleanCategory);
+      } 
+    } catch(error) {
+      //handle the error 404 fail message from state
     }
   }
 
   handleClick = async (categories) => {
-    const randomValue = categories.length !== 1 ? categories[ Math.floor( Math.random() * categories.length ) ] : 'funny';
+    // test it calls fetch quote cat and add category quote
+    console.log('catz',categories)
+    const randomCategory = categories.length >= 2 ? categories[ Math.floor( Math.random() * categories.length ) ] : 'funny';
+    console.log('randomCategory', randomCategory)
     try {
-      const categoryQuoteToDispatch = await fetchQuoteCategories(randomValue);
-      this.props.addCategoryQuote(categoryQuoteToDispatch);      
+      const categoryQuote = await fetchQuote(randomCategory);
+      this.props.addCategoryQuote(categoryQuote);      
     } catch(error) {
       throw new Error(`handleClick failed to fetch: ${error}`)
     }
   }
 
+  handleFavoriteClick = (quoteData) => {
+    const { favorite } = quoteData.props.data;
+    const favoriteQuote = quoteData.props.data;
+    this.props.addFavorite(favoriteQuote);
+    // favorite === false ? favorite = true : favorite = false;
+    // console.log('quoteData', quoteData.props.data)
+  }
+
   async fetchAndDispatch(category) {
+    // test given a category the correct fetch and add action gets called and errors
     const { homeQuote, randomQuote, categoryQuote } = this.props;
 
     if(category === 'home') {
       try {
-        const homeQuoteToDispatch = await fetchHomeQuote();
-        this.props.addHomeQuote(homeQuoteToDispatch);
-        return [ ...homeQuote, homeQuoteToDispatch ];
+        const homeQuote = await fetchHomeQuote();
+        this.props.addHomeQuote(homeQuote);
+        return [ ...homeQuote, homeQuote ];
       } catch(error) {
         throw new Error(`fetchHomeQuote in fetchAndDispatch failed: ${error}`);
       }
 
     } else if (category === 'random') {
       try {
-        const randomQuoteToDispatch = await fetchRandomQuote();
-        this.props.addRandomQuote(randomQuoteToDispatch);
-        return [ ...randomQuote, randomQuoteToDispatch ];
+        const randomQuote = await fetchRandomQuote();
+        this.props.addRandomQuote(randomQuote);
+        return [ ...randomQuote, randomQuote ];
       } catch(error) {
         throw new Error(`fetchRandomQuote in fetchAndDispatch failed: ${error}`)
       }
       
     } else {
       try {
-        const categoryQuoteToDispatch = await fetchQuoteCategories(category);
-        this.props.addCategoryQuote(categoryQuoteToDispatch);
-        return [ ...categoryQuote, categoryQuoteToDispatch ];
+        const categoryQuote = await fetchQuote(category);
+        this.props.addCategoryQuote(categoryQuote);
+        return [ ...categoryQuote, categoryQuote ];
       } catch(error) {
-        throw new Error(`fetchQuoteCategories in fetchAndDispatch failed: ${error}`)
+        throw new Error(`fetchQuote in fetchAndDispatch failed: ${error}`)
       }
     }
   }
-  
-  render() {
+
+  renderCards = () => {
+    // test w snapshot passing in diff quotes
     const { homeQuote, randomQuote, categoryQuote } = this.props;
     const pathnameProp = this.props.location.pathname;
-
-      if(pathnameProp.includes('random')) {
-        const randomCards = randomQuote.map( quote => <Card key={ quote.id } data={ quote } handleClick={ this.handleClick } /> )
-        return <div>{ randomCards }</div>
-
-      } else if (pathnameProp.includes('home')) {
-        const homeCards = homeQuote.map( quote => <Card key={ quote.id } data={ quote } handleClick={ this.handleClick } /> )
-        return <div>{ homeCards }</div>
-
-      } else if (pathnameProp !== 'random' && pathnameProp !== 'home') {
-        const categoryCards = categoryQuote.map( quote => <Card key={ quote.id } data={ quote } handleClick={ this.handleClick } /> )
-        return <div>{ categoryCards }</div>
-      }
-
-      else { return null }
+    let quoteToUse
+    if(pathnameProp.includes('random')) {
+      quoteToUse = randomQuote
+    } else if(pathnameProp.includes('home')) {
+      quoteToUse = homeQuote
+    } else {
+      quoteToUse = categoryQuote
+    }
+    const cardsToRender = quoteToUse.map( quote => <Card key={ quote.id } data={ quote } handleClick={ this.handleClick } handleFavoriteClick={ this.handleFavoriteClick }/> )
+    return cardsToRender
+  }
+  
+  render() {
+    return (
+      <div className="all-cards">
+        { this.renderCards() }
+      </div>
+    )
   }
 }
+
+Category.propTypes = {
+  addHomeQuote: PropTypes.func,
+  addRandomQuote: PropTypes.func,
+  addCategoryQuote: PropTypes.func,
+  handleClick: PropTypes.func,
+  handleFavoriteClick: PropTypes.func,
+
+  homeQuote: PropTypes.arrayOf(PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string)
+  })),
+
+  randomQuote: PropTypes.arrayOf(PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string)
+  })),
+
+  categoryQuote: PropTypes.arrayOf(PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string)
+  })),
+};
 
 export const mapStateToProps = (state) => ({
   homeQuote: state.homeQuote,
   randomQuote: state.randomQuote,
-  categoryQuote: state.categoryQuote
+  categoryQuote: state.categoryQuote,
+  favorites: state.favorites
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  addHomeQuote: (homeQuoteToDispatch) => dispatch(addHomeQuote(homeQuoteToDispatch)),
-  addRandomQuote: (randomQuoteToDispatch) => dispatch(addRandomQuote(randomQuoteToDispatch)),
-  addCategoryQuote: (categoryQuoteToDispatch) => dispatch(addCategoryQuote(categoryQuoteToDispatch))
+  addHomeQuote: (homeQuote) => dispatch(addHomeQuote(homeQuote)),
+  addRandomQuote: (randomQuote) => dispatch(addRandomQuote(randomQuote)),
+  addCategoryQuote: (categoryQuote) => dispatch(addCategoryQuote(categoryQuote)),
+  addFavorite: (favoriteQuote) => dispatch(addFavorite(favoriteQuote))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
-
-Category.propTypes = {
-  addHomeQuote: PropTypes.func.isRequired,
-  addRandomQuote: PropTypes.func.isRequired,
-  addCategoryQuote: PropTypes.func.isRequired,
-
-  homeQuote: PropTypes.arrayOf(PropTypes.shape({
-    quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.string)
-  })).isRequired,
-
-  randomQuote: PropTypes.arrayOf(PropTypes.shape({
-    quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.string)
-  })).isRequired,
-
-  categoryQuote: PropTypes.arrayOf(PropTypes.shape({
-    quote: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.string)
-  })).isRequired,
-
-  match: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
-};

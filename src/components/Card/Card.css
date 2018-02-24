@@ -1,0 +1,38 @@
+.all-cards {
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll; }
+
+.quote-container {
+  display: flex;
+  flex-direction: row; }
+
+.next-button {
+  position: absolute;
+  background-image: url("../../assets/right-arrow3.png");
+  background-size: 40px;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  right: 30px;
+  top: 50%; }
+
+.favorite-button {
+  background-image: url("../../assets/unfavorited.png");
+  background-size: 40px;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none; }
+
+.favorite-button:hover {
+  background-image: url("../../assets/hover-favorite.png");
+  background-size: 40px;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none; }

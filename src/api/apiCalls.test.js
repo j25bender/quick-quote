@@ -1,4 +1,4 @@
-import { fetchRandomQuote, fetchHomeQuote, fetchQuoteCategories } from './apiCalls'
+import { fetchRandomQuote, fetchHomeQuote, fetchQuote } from './apiCalls'
 
 describe('apiCalls fetch success Tests', () => {
 
@@ -23,9 +23,9 @@ describe('apiCalls fetch success Tests', () => {
     expect(window.fetch).toHaveBeenCalled();
   })
 
-  it('fetchQuoteCategories should fetch if status is 200', () => {
+  it('fetchQuote should fetch if status is 200', () => {
     expect(window.fetch).not.toHaveBeenCalled();
-    fetchQuoteCategories('funny');
+    fetchQuote('funny');
     expect(window.fetch).toHaveBeenCalled();
   })
 })
@@ -47,11 +47,11 @@ describe('apiCalls fail to fetch Tests', () => {
     expect(fetchHomeQuote()).rejects.toEqual(Error ('fetchHomeQuote failed to fetch due to: TypeError: initialMax100Fetch.json is not a function'));
   })
 
-  it('fetchQuoteCategories should fail fetch if status is not 200', async () => {
+  it('fetchQuote should fail fetch if status is not 200', async () => {
     window.fetch = jest.fn().mockImplementation( () => Promise.resolve({
       status: 404,
     })
   )  
-    expect(fetchQuoteCategories('invalid-category')).rejects.toEqual(Error ('fetchQuoteCategories failed to fetch due to: TypeError: initialCategoriesFetch.json is not a function'))
+    expect(fetchQuote('invalid-category')).rejects.toEqual(Error ('fetchQuote failed to fetch due to: TypeError: initialCategoriesFetch.json is not a function'))
   })
 })
