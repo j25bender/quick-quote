@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Category.css';
-import { addHomeQuote, addRandomQuote, addCategoryQuote, addFavorite } from '../../actions';
+import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite } from '../../actions';
 import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls';
 import Card from '../Card/Card';
 import { connect } from 'react-redux';
@@ -32,21 +32,20 @@ export class Category extends Component {
 
   handleClick = async (categories) => {
     // test it calls fetch quote cat and add category quote
-    console.log('catz',categories)
     const randomCategory = categories.length >= 2 ? categories[ Math.floor( Math.random() * categories.length ) ] : 'funny';
-    console.log('randomCategory', randomCategory)
     try {
       const categoryQuote = await fetchQuote(randomCategory);
+      console.log()
       this.props.addCategoryQuote(categoryQuote);      
     } catch(error) {
-      throw new Error(`handleClick failed to fetch: ${error}`)
+      //handle the error 404 fail message from state
     }
   }
 
   handleFavoriteClick = (quoteData) => {
     const { favorite } = quoteData.props.data;
     const favoriteQuote = quoteData.props.data;
-    this.props.addFavorite(favoriteQuote);
+    this.props.toggleFavorite(favoriteQuote);
     // favorite === false ? favorite = true : favorite = false;
     // console.log('quoteData', quoteData.props.data)
   }
@@ -61,7 +60,7 @@ export class Category extends Component {
         this.props.addHomeQuote(homeQuote);
         return [ ...homeQuote, homeQuote ];
       } catch(error) {
-        throw new Error(`fetchHomeQuote in fetchAndDispatch failed: ${error}`);
+        //handle the error 404 fail message from state
       }
 
     } else if (category === 'random') {
@@ -70,7 +69,7 @@ export class Category extends Component {
         this.props.addRandomQuote(randomQuote);
         return [ ...randomQuote, randomQuote ];
       } catch(error) {
-        throw new Error(`fetchRandomQuote in fetchAndDispatch failed: ${error}`)
+        //handle the error 404 fail message from state
       }
       
     } else {
@@ -79,24 +78,29 @@ export class Category extends Component {
         this.props.addCategoryQuote(categoryQuote);
         return [ ...categoryQuote, categoryQuote ];
       } catch(error) {
-        throw new Error(`fetchQuote in fetchAndDispatch failed: ${error}`)
+        //handle the error 404 fail message from state
       }
     }
   }
 
   renderCards = () => {
     // test w snapshot passing in diff quotes
-    const { homeQuote, randomQuote, categoryQuote } = this.props;
+    const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
     const pathnameProp = this.props.location.pathname;
     let quoteToUse
-    if(pathnameProp.includes('random')) {
-      quoteToUse = randomQuote
-    } else if(pathnameProp.includes('home')) {
-      quoteToUse = homeQuote
+    if(pathnameProp.includes('home')) {
+      quoteToUse = homeQuotes
+    } else if(pathnameProp.includes('random')) {
+      quoteToUse = randomQuotes
     } else {
-      quoteToUse = categoryQuote
+      quoteToUse = categoryQuotes
     }
-    const cardsToRender = quoteToUse.map( quote => <Card key={ quote.id } data={ quote } handleClick={ this.handleClick } handleFavoriteClick={ this.handleFavoriteClick }/> )
+    const cardsToRender = quoteToUse.map( quote => {
+      return <Card key={ quote.id } 
+                   data={ quote } 
+                   handleClick={ this.handleClick } 
+                   handleFavoriteClick={ this.handleFavoriteClick }/>
+    } )
     return cardsToRender
   }
   
@@ -116,21 +120,21 @@ Category.propTypes = {
   handleClick: PropTypes.func,
   handleFavoriteClick: PropTypes.func,
 
-  homeQuote: PropTypes.arrayOf(PropTypes.shape({
+  homeQuotes: PropTypes.arrayOf(PropTypes.shape({
     quote: PropTypes.string.isRequired,
     author: PropTypes.string,
     id: PropTypes.string.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string)
   })),
 
-  randomQuote: PropTypes.arrayOf(PropTypes.shape({
+  randomQuotes: PropTypes.arrayOf(PropTypes.shape({
     quote: PropTypes.string.isRequired,
     author: PropTypes.string,
     id: PropTypes.string.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string)
   })),
 
-  categoryQuote: PropTypes.arrayOf(PropTypes.shape({
+  categoryQuotes: PropTypes.arrayOf(PropTypes.shape({
     quote: PropTypes.string.isRequired,
     author: PropTypes.string,
     id: PropTypes.string.isRequired,
@@ -139,9 +143,9 @@ Category.propTypes = {
 };
 
 export const mapStateToProps = (state) => ({
-  homeQuote: state.homeQuote,
-  randomQuote: state.randomQuote,
-  categoryQuote: state.categoryQuote,
+  homeQuotes: state.homeQuotes,
+  randomQuotes: state.randomQuotes,
+  categoryQuotes: state.categoryQuotes,
   favorites: state.favorites
 });
 
@@ -149,7 +153,7 @@ export const mapDispatchToProps = (dispatch) => ({
   addHomeQuote: (homeQuote) => dispatch(addHomeQuote(homeQuote)),
   addRandomQuote: (randomQuote) => dispatch(addRandomQuote(randomQuote)),
   addCategoryQuote: (categoryQuote) => dispatch(addCategoryQuote(categoryQuote)),
-  addFavorite: (favoriteQuote) => dispatch(addFavorite(favoriteQuote))
+  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

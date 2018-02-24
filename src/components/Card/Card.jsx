@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 
 const Card = (props) => {
   const { quote, author, categories } = props.data;
+  console.log(props)
   const cardHtml = <div>
                     <h4 className="quote">{ quote }</h4>
                     <h5 className="author">{ author }</h5>
-                    <button className="favorite-button" onClick={ () => props.handleFavoriteClick({ props }) }></button>
+                    <button className="favorite-button" 
+                            onClick={ () => props.handleFavoriteClick({ props }) }>
+                    </button>
                    </div>
   if(props) {
     const favoriteCheck = props.data.favorite ? "favorite" : "nonFavorite";
@@ -21,7 +24,9 @@ const Card = (props) => {
               { categoryList }
             </div>
           </div>
-          <button className="next-button" onClick={ () => props.handleClick(categories) }></button>
+          <button className="next-button" 
+                  onClick={ () => props.handleClick(categories) }>
+          </button>
         </div>
       </div>
     )

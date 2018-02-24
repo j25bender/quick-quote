@@ -13,12 +13,7 @@ export const addCategoryQuote = (categoryQuote) => ({
   categoryQuote
 });
 
-export const addFavorite = (favoriteQuote) => ({
-  type: 'ADD_FAVORITE',
+export const toggleFavorite = (favoriteQuote) => ({
+  type: 'TOGGLE_FAVORITE',
   favoriteQuote
-});
-
-export const removeFavorite = (favToRemove) => ({
-  type: 'REMOVE_FAVORITE',
-  favToRemove
 });
