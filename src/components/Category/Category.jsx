@@ -34,9 +34,15 @@ export class Category extends Component {
     // test it calls fetch quote cat and add category quote
     const randomCategory = categories.length >= 2 ? categories[ Math.floor( Math.random() * categories.length ) ] : 'funny';
     try {
-      const categoryQuote = await fetchQuote(randomCategory);
-      console.log()
-      this.props.addCategoryQuote(categoryQuote);      
+      const newQuote = await fetchQuote(randomCategory);
+      const pathnameProp = this.props.location.pathname;
+      if(pathnameProp.includes('home')) {
+        this.props.addHomeQuote(newQuote)
+      } else if (pathnameProp.includes('random')) {
+        this.props.addRandomQuote(newQuote)
+      } else {
+        this.props.addCategoryQuote(newQuote);
+      }      
     } catch(error) {
       //handle the error 404 fail message from state
     }
@@ -46,19 +52,17 @@ export class Category extends Component {
     const { favorite } = quoteData.props.data;
     const favoriteQuote = quoteData.props.data;
     this.props.toggleFavorite(favoriteQuote);
-    // favorite === false ? favorite = true : favorite = false;
-    // console.log('quoteData', quoteData.props.data)
   }
 
   async fetchAndDispatch(category) {
     // test given a category the correct fetch and add action gets called and errors
-    const { homeQuote, randomQuote, categoryQuote } = this.props;
+    const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
 
     if(category === 'home') {
       try {
         const homeQuote = await fetchHomeQuote();
         this.props.addHomeQuote(homeQuote);
-        return [ ...homeQuote, homeQuote ];
+        return [ ...homeQuotes, homeQuote ];
       } catch(error) {
         //handle the error 404 fail message from state
       }
@@ -67,7 +71,7 @@ export class Category extends Component {
       try {
         const randomQuote = await fetchRandomQuote();
         this.props.addRandomQuote(randomQuote);
-        return [ ...randomQuote, randomQuote ];
+        return [ ...randomQuotes, randomQuote ];
       } catch(error) {
         //handle the error 404 fail message from state
       }
@@ -76,7 +80,7 @@ export class Category extends Component {
       try {
         const categoryQuote = await fetchQuote(category);
         this.props.addCategoryQuote(categoryQuote);
-        return [ ...categoryQuote, categoryQuote ];
+        return [ ...categoryQuotes, categoryQuote ];
       } catch(error) {
         //handle the error 404 fail message from state
       }

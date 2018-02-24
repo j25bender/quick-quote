@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 const Card = (props) => {
   const { quote, author, categories } = props.data;
-  console.log(props)
   const cardHtml = <div>
                     <h4 className="quote">{ quote }</h4>
                     <h5 className="author">{ author }</h5>
