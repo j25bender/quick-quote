@@ -14,8 +14,9 @@ export const fetchRandomQuote = async () => {
     const author = randomQuoteJson.contents.author;
     const id = randomQuoteJson.contents.id;
     const categories = randomQuoteJson.contents.categories;
+    const favorite = false;
 
-    return { quote, author, id, categories }
+    return { quote, author, id, categories, favorite }
 
   } catch(error) {
     throw new Error(`fetchRandomQuote failed to fetch due to: ${error}`)
@@ -37,8 +38,9 @@ export const fetchHomeQuote = async () => {
     const author = max100Json.contents.author;
     const id = max100Json.contents.id;
     const categories = max100Json.contents.categories;
+    const favorite = false;
 
-    return { quote, author, id, categories }
+    return { quote, author, id, categories, favorite }
 
   } catch(error) {
     throw new Error(`fetchHomeQuote failed to fetch due to: ${error}`)
@@ -60,8 +62,9 @@ export const fetchQuote = async (category) => {
     const author = categoryQuoteJson.contents.author;
     const id = categoryQuoteJson.contents.id;
     const categories = categoryQuoteJson.contents.categories;
+    const favorite = false;
 
-    return { quote, author, id, categories }
+    return { quote, author, id, categories, favorite }
 
   } catch(error) {
     throw new Error(`fetchQuote failed to fetch due to: ${error}`)

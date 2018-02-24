@@ -1,14 +1,24 @@
-export const addRandomQuote = (randomQuoteToDispatch) => ({
+export const addRandomQuote = (randomQuote) => ({
   type: 'ADD_RANDOM_QUOTE',
-  randomQuoteToDispatch
+  randomQuote
 });
 
-export const addHomeQuote = (homeQuoteToDispatch) => ({
+export const addHomeQuote = (homeQuote) => ({
   type: 'ADD_HOME_QUOTE',
-  homeQuoteToDispatch
+  homeQuote
 });
 
-export const addCategoryQuote = (categoryQuoteToDispatch) => ({
+export const addCategoryQuote = (categoryQuote) => ({
   type: 'ADD_CATEGORY_QUOTE',
-  categoryQuoteToDispatch
+  categoryQuote
+});
+
+export const addFavorite = (favoriteQuote) => ({
+  type: 'ADD_FAVORITE',
+  favoriteQuote
+});
+
+export const removeFavorite = (favToRemove) => ({
+  type: 'REMOVE_FAVORITE',
+  favToRemove
 });
