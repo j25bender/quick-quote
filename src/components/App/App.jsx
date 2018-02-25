@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from '../Header/Header';
 import Category from '../Category/Category';
+import Favorites from '../Favorites/Favorites';
 import { Route, Switch } from 'react-router-dom';
 
 export class App extends Component {
@@ -13,6 +14,7 @@ export class App extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={ Category } />
+          <Route exact path='/favorites' component={ Favorites } />
           { renderRoutes }
         </Switch>
       </div>

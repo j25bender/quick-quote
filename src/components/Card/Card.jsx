@@ -6,18 +6,19 @@ const Card = (props) => {
   const { quote, author, categories } = props.data;
   const cardHtml = <div>
                     <h4 className="quote">{ quote }</h4>
-                    <h5 className="author">{ author }</h5>
+                    <h5 className="author" defaultValue="~Anonymous">{ author }</h5>
                     <button className="favorite-button" 
                             onClick={ () => props.handleFavoriteClick({ props }) }>
                     </button>
                    </div>
   if(props) {
     const favoriteCheck = props.data.favorite ? "favorite" : "nonFavorite";
+    const showCheck = props.data.show ? "show" : "noShow";
     const categoryList = categories !== undefined ? categories.map( (cat, i) => <p key={ i }>{ cat }</p> )                                             : <div className="no-categories"></div>;
     return (
       <div>
         <div className="quote-container">
-          <div className={ favoriteCheck }>
+          <div className={ favoriteCheck } id={ showCheck }>
             { cardHtml }
             <div className="categories">
               { categoryList }

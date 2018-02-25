@@ -1,11 +1,14 @@
+#myDiv {
+  height: 100vh;
+  width: 100vw;
+  overflow: auto; }
+
 .all-cards {
+  height: 100vh;
+  width: 20000px;
   display: flex;
   flex-direction: row;
-  overflow-y: scroll; }
-
-.quote-container {
-  display: flex;
-  flex-direction: row; }
+  overflow: scroll; }
 
 .next-button {
   position: absolute;
@@ -37,3 +40,6 @@
   background-repeat: no-repeat;
   background-color: transparent;
   border: none; }
+
+.show {
+  margin-right: 500px; }

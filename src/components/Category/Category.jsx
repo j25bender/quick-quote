@@ -32,7 +32,15 @@ export class Category extends Component {
 
   handleClick = async (categories) => {
     // test it calls fetch quote cat and add category quote
-    const randomCategory = categories.length >= 2 ? categories[ Math.floor( Math.random() * categories.length ) ] : 'funny';
+    const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
+    const defaultCategories = ['funny', 'life', 'love', 'students', 'positive', 'motivation'];
+    const cardCategories = categories[ Math.floor( Math.random() * categories.length ) ];
+    const randomCategory = categories.length >= 2 ? cardCategories : defaultCategories[ Math.floor( Math.random() * defaultCategories.length ) ];
+
+    const sLeft = document.getElementById('myDiv');
+      console.log(document.getElementById('myDiv'), 'asdasdas', sLeft)
+      sLeft.scrollLeft = categoryQuotes.length * window.screen.width;
+      document.getElementById('myDiv').scrollLeft;
     try {
       const newQuote = await fetchQuote(randomCategory);
       const pathnameProp = this.props.location.pathname;
@@ -100,7 +108,7 @@ export class Category extends Component {
       quoteToUse = categoryQuotes
     }
     const cardsToRender = quoteToUse.map( quote => {
-      return <Card key={ quote.id } 
+      return <Card key={ quote.id }
                    data={ quote } 
                    handleClick={ this.handleClick } 
                    handleFavoriteClick={ this.handleFavoriteClick }/>
@@ -110,8 +118,10 @@ export class Category extends Component {
   
   render() {
     return (
-      <div className="all-cards">
-        { this.renderCards() }
+      <div id="myDiv">
+        <div className="all-cards">
+          { this.renderCards() }
+        </div>
       </div>
     )
   }
@@ -157,7 +167,7 @@ export const mapDispatchToProps = (dispatch) => ({
   addHomeQuote: (homeQuote) => dispatch(addHomeQuote(homeQuote)),
   addRandomQuote: (randomQuote) => dispatch(addRandomQuote(randomQuote)),
   addCategoryQuote: (categoryQuote) => dispatch(addCategoryQuote(categoryQuote)),
-  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote))
+  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

@@ -1,24 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Courgette|Kaushan+Script|Special+Elite");
-.nonFavorite {
+.nonFavorite,
+.favorite {
   width: 100vw;
-  height: 100vh; }
-
-.nonFavorite {
+  height: 95vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column wrap;
-  text-align: center;
   line-height: 2;
   font-size: 30px;
   text-shadow: 1px 1px ghostwhite;
   font-weight: bold;
-  background-image: url("../../assets/landscape10.jpg");
+  background-image: url("../../assets/landscape6.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
 
-.nonFavorite div {
+.nonFavorite div,
+.favorite div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +30,8 @@
   max-width: 80%;
   overflow-y: hidden; }
 
-.nonFavorite button {
+.nonFavorite button,
+.favorite button {
   font-size: 18px; }
 
 div.categories {
