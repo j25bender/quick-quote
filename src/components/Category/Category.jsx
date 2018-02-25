@@ -66,32 +66,24 @@ export class Category extends Component {
     // test given a category the correct fetch and add action gets called and errors
     const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
 
-    if(category === 'home') {
-      try {
+    try {
+      if(category === 'home') {
         const homeQuote = await fetchHomeQuote();
         this.props.addHomeQuote(homeQuote);
         return [ ...homeQuotes, homeQuote ];
-      } catch(error) {
-        //handle the error 404 fail message from state
-      }
 
-    } else if (category === 'random') {
-      try {
+      } else if (category === 'random') {
         const randomQuote = await fetchRandomQuote();
         this.props.addRandomQuote(randomQuote);
         return [ ...randomQuotes, randomQuote ];
-      } catch(error) {
-        //handle the error 404 fail message from state
-      }
-      
-    } else {
-      try {
+        
+      } else {
         const categoryQuote = await fetchQuote(category);
         this.props.addCategoryQuote(categoryQuote);
         return [ ...categoryQuotes, categoryQuote ];
-      } catch(error) {
-        //handle the error 404 fail message from state
       }
+    } catch(error) {
+      //404 error
     }
   }
 

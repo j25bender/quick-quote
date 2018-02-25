@@ -13,12 +13,11 @@ const Card = (props) => {
                    </div>
   if(props) {
     const favoriteCheck = props.data.favorite ? "favorite" : "nonFavorite";
-    const showCheck = props.data.show ? "show" : "noShow";
     const categoryList = categories !== undefined ? categories.map( (cat, i) => <p key={ i }>{ cat }</p> )                                             : <div className="no-categories"></div>;
     return (
       <div>
         <div className="quote-container">
-          <div className={ favoriteCheck } id={ showCheck }>
+          <div className={ favoriteCheck }>
             { cardHtml }
             <div className="categories">
               { categoryList }
