@@ -3,6 +3,7 @@ import './Category.css';
 import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite } from '../../actions';
 import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls';
 import Card from '../Card/Card';
+import { scrollLeft } from '../../helper/helper'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -37,18 +38,17 @@ export class Category extends Component {
     const cardCategories = categories[ Math.floor( Math.random() * categories.length ) ];
     const randomCategory = categories.length >= 2 ? cardCategories : defaultCategories[ Math.floor( Math.random() * defaultCategories.length ) ];
 
-    const sLeft = document.getElementById('myDiv');
-      console.log(document.getElementById('myDiv'), 'asdasdas', sLeft)
-      sLeft.scrollLeft = categoryQuotes.length * window.screen.width;
-      document.getElementById('myDiv').scrollLeft;
     try {
       const newQuote = await fetchQuote(randomCategory);
       const pathnameProp = this.props.location.pathname;
       if(pathnameProp.includes('home')) {
-        this.props.addHomeQuote(newQuote)
+        scrollLeft(homeQuotes);
+        this.props.addHomeQuote(newQuote);
       } else if (pathnameProp.includes('random')) {
+        scrollLeft(randomQuotes);
         this.props.addRandomQuote(newQuote)
       } else {
+        scrollLeft(categoryQuotes);
         this.props.addCategoryQuote(newQuote);
       }      
     } catch(error) {
