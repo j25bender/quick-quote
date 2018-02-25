@@ -1,13 +1,21 @@
-.all-cards {
-  display: flex;
-  flex-direction: row;
-  overflow-y: scroll;
+#myDiv {
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
 }
 
-.quote-container {
+.all-cards {
+  height: 100vh;
+  width: 20000px;
   display: flex;
   flex-direction: row;
+  overflow: scroll;
 }
+
+// .quote-container {
+//   display: flex;
+//   flex-direction: row;
+// }
 
 .next-button {
   position: absolute;
@@ -20,6 +28,7 @@
   border: none;
   right: 30px;
   top: 50%;
+  animation: slide 0.5s forwards;
 }
 
 .favorite-button {
@@ -42,3 +51,6 @@
   border: none;
 }
 
+.show {
+  margin-right: 500px;
+}

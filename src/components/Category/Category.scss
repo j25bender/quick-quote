@@ -1,16 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette|Kaushan+Script|Special+Elite');
 
-.nonFavorite {
+.nonFavorite,
+.favorite {
   width: 100vw;
-  height: 100vh;
-}
-
-.nonFavorite {
+  height: 95vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column wrap;
-  text-align: center;
   line-height: 2;
   font-size: 30px;
   text-shadow: 1px 1px ghostwhite;
@@ -22,7 +19,8 @@
   background-size: cover;
 }
 
-.nonFavorite div {
+.nonFavorite div,
+.favorite div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +35,8 @@
   overflow-y: hidden;
 }
 
-.nonFavorite button {
+.nonFavorite button,
+.favorite button {
   font-size: 18px;
 }
 
@@ -53,3 +52,4 @@ div.categories p {
   font-size: 15px;
   overflow-y: hidden;
 }
+

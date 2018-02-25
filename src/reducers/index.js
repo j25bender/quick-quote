@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
-import { randomQuoteReducer } from './randomQuoteReducer';
 import { homeQuoteReducer } from './homeQuoteReducer';
+import { randomQuoteReducer } from './randomQuoteReducer';
 import { categoryQuoteReducer } from './categoryQuoteReducer';
 import { favoriteQuoteReducer } from './favoriteQuoteReducer';
 
 const rootReducer = combineReducers({
-  randomQuote: randomQuoteReducer,
-  homeQuote: homeQuoteReducer,
-  categoryQuote: categoryQuoteReducer,
+  homeQuotes: homeQuoteReducer,
+  randomQuotes: randomQuoteReducer,  
+  categoryQuotes: categoryQuoteReducer,
   favorites: favoriteQuoteReducer
 });
 

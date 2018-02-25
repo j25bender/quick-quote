@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addFavorite, removeFavorite } from '../../actions';
+import { toggleFavorite } from '../../actions';
 import Card from '../Card/Card';
+import {handleClick} from '../Category/Category';
 import './Favorites.css';
 
-export default class Favorites extends Component {
+export class Favorites extends Component {
+  constructor(props) {
+    super(props)
+
+  }
   
+  renderFavorites = () => {
+    if(!this.props.favorites.length) {
+      return <h1 className="emptyFavorites">No Favorites...</h1>
+    }
+    const { favorites } = this.props
+    const favoriteCards = favorites.map( (quote, key) => {
+      return <Card key={ quote.id } 
+                  data={ quote } 
+                  handleClick={ this.handleClick } 
+                  handleFavoriteClick={ this.handleFavoriteClick }/>
+    })
+    return favoriteCards;
+  }
+
   render() {
+    // console.log('cat',handleClick())
     return (
-      <div>
-        
+      <div className="all-cards">
+        {this.renderFavorites()}
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => ({
   favorites: state.favorites
-}
+})
 
-const mapDispatchToProps = (dispatch) => {
-  removeFavorite: (favToRemove) => dispatch(removeFavorite(favToRemove))
-}
+export const mapDispatchToProps = (dispatch) => ({
+  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote))
+})
 
-connect(mapStateToProps, mapDispatchToProps)(Favorites)
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites)

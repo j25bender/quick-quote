@@ -92,9 +92,9 @@ describe('Category', () => {
       expect(mockDispatch).toHaveBeenCalled();
     })
 
-    it('addFavorite should call dispatch', () => {
+    it('toggleFavorite should call dispatch', () => {
       const mapped = mapDispatchToProps(mockDispatch);
-      mapped.addFavorite();
+      mapped.toggleFavorite();
       expect(mockDispatch).toHaveBeenCalled();
     })
   })
