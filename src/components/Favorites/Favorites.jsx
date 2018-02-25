@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleFavorite } from '../../actions';
 import Card from '../Card/Card';
-import {handleClick} from '../Category/Category';
+import { scrollLeft } from '../../helper/helper';
+import { handleClick } from '../Category/Category';
 import './Favorites.css';
 
 export class Favorites extends Component {
   constructor(props) {
     super(props)
 
+  }
+
+  handleFavoriteClick = (quoteData) => {
+    const { favorite } = quoteData.props.data;
+    const favoriteQuote = quoteData.props.data;
+    this.props.toggleFavorite(favoriteQuote);
+  }
+
+  handleClick = () => {
+    scrollLeft(this.props.favorites);
   }
   
   renderFavorites = () => {
@@ -26,10 +37,11 @@ export class Favorites extends Component {
   }
 
   render() {
-    // console.log('cat',handleClick())
     return (
-      <div className="all-cards">
-        {this.renderFavorites()}
+      <div id="myDiv">
+        <div className="all-cards">
+          { this.renderFavorites() }
+        </div>
       </div>
     )
   }
