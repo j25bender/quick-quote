@@ -7,10 +7,6 @@ import { handleClick } from '../Category/Category';
 import './Favorites.css';
 
 export class Favorites extends Component {
-  constructor(props) {
-    super(props)
-
-  }
 
   handleFavoriteClick = (quoteData) => {
     const { favorite } = quoteData.props.data;
@@ -23,15 +19,15 @@ export class Favorites extends Component {
   }
   
   renderFavorites = () => {
-    if(!this.props.favorites.length) {
+    const { favorites } = this.props
+    if(!favorites.length) {
       return <h1 className="emptyFavorites">No Favorites...</h1>
     }
-    const { favorites } = this.props
     const favoriteCards = favorites.map( (quote, key) => {
       return <Card key={ quote.id } 
-                  data={ quote } 
-                  handleClick={ this.handleClick } 
-                  handleFavoriteClick={ this.handleFavoriteClick }/>
+                   data={ quote } 
+                   handleClick={ this.handleClick } 
+                   handleFavoriteClick={ this.handleFavoriteClick }/>
     })
     return favoriteCards;
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Category.css';
-import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite } from '../../actions';
+import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite, renderErrorMessage } from '../../actions';
 import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls';
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper'
@@ -15,7 +15,7 @@ export class Category extends Component {
       const cleanCategory = pathnameProp.slice(1);
       this.fetchAndDispatch(cleanCategory);
     } catch(error) {
-      //handle the error 404 fail message from state
+      this.props.renderErrorMessage(error);
     }
   }
 
@@ -27,7 +27,7 @@ export class Category extends Component {
         this.fetchAndDispatch(cleanCategory);
       } 
     } catch(error) {
-      //handle the error 404 fail message from state
+      this.props.renderErrorMessage(error);
     }
   }
 
@@ -52,7 +52,7 @@ export class Category extends Component {
         this.props.addCategoryQuote(newQuote);
       }      
     } catch(error) {
-      //handle the error 404 fail message from state
+      this.props.renderErrorMessage(error);
     }
   }
 
@@ -83,7 +83,7 @@ export class Category extends Component {
         return [ ...categoryQuotes, categoryQuote ];
       }
     } catch(error) {
-      //404 error
+      this.props.renderErrorMessage(error);
     }
   }
 
@@ -123,6 +123,7 @@ Category.propTypes = {
   addHomeQuote: PropTypes.func,
   addRandomQuote: PropTypes.func,
   addCategoryQuote: PropTypes.func,
+  renderErrorMessage: PropTypes.func,
   handleClick: PropTypes.func,
   handleFavoriteClick: PropTypes.func,
 
@@ -152,7 +153,7 @@ export const mapStateToProps = (state) => ({
   homeQuotes: state.homeQuotes,
   randomQuotes: state.randomQuotes,
   categoryQuotes: state.categoryQuotes,
-  favorites: state.favorites
+  errorMessage: state.errorMessage
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -160,6 +161,7 @@ export const mapDispatchToProps = (dispatch) => ({
   addRandomQuote: (randomQuote) => dispatch(addRandomQuote(randomQuote)),
   addCategoryQuote: (categoryQuote) => dispatch(addCategoryQuote(categoryQuote)),
   toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote)),
+  renderErrorMessage: (error) => dispatch(renderErrorMessage(error))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
