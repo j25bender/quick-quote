@@ -4,16 +4,19 @@ import rootReducer from './index';
 import { randomQuoteReducer } from './randomQuoteReducer';
 import { homeQuoteReducer } from './homeQuoteReducer';
 import { categoryQuoteReducer } from './categoryQuoteReducer';
+import { favoriteQuoteReducer } from './favoriteQuoteReducer';
 
 describe('Reducers Tests', () => {
   const rootReducer = combineReducers({ randomQuoteReducer, 
     homeQuoteReducer, 
-    categoryQuoteReducer 
+    categoryQuoteReducer,
+    favoriteQuoteReducer
   });
   const mockQuoteData = {quote: "Retirement is the ugliest word in the language.", 
     author: "Ernest Hemingway", 
     id: "hqV6ZjgFus0xQ58WPhH5hQeF", 
-    categories: Array(1)
+    categories: Array(1),
+    favorite: false
   };
   let store;
   let expectedStore;
@@ -22,11 +25,12 @@ describe('Reducers Tests', () => {
     store = createStore(rootReducer);
     expectedStore = { randomQuoteReducer: [], 
       homeQuoteReducer: [], 
-      categoryQuoteReducer: []
+      categoryQuoteReducer: [],
+      favoriteQuoteReducer: []
     };
   });
 
-  it('categoryQuoteReducer should default to return empty array', () => {
+  it('Reducers should default to return empty array', () => {
     expect(store.getState().randomQuoteReducer).toEqual(randomQuoteReducer( [], {} ));
     expect(randomQuoteReducer( undefined, {})).toEqual([]);
 
@@ -35,6 +39,9 @@ describe('Reducers Tests', () => {
 
     expect(store.getState().categoryQuoteReducer).toEqual(categoryQuoteReducer( [], {} ));
     expect(categoryQuoteReducer( undefined, {})).toEqual([]);
+
+    expect(store.getState().favoriteQuoteReducer).toEqual(favoriteQuoteReducer( [], {} ));
+    expect(favoriteQuoteReducer( undefined, {})).toEqual([]);
   });
 
   it('action type ADD_RANDOM_QUOTE should cause randomQuoteReducer to update store', () => {
@@ -59,6 +66,13 @@ describe('Reducers Tests', () => {
     store.dispatch(categoryQuoteAction);
     expect(store.getState().categoryQuoteReducer).toEqual(categoryQuoteReducer([], categoryQuoteAction));
     expect(categoryQuoteReducer( [], categoryQuoteAction)).toEqual([mockQuoteData]);
+  });
+
+  it('action type TOGGLE_FAVORITE should cause favoriteQuoteReducer to update store', () => {
+    const favoriteQuote = { type: 'TOGGLE_FAVORITE', favoriteQuote: mockQuoteData };
+    
+    favoriteQuoteReducer([], favoriteQuote)
+    expect(mockQuoteData.favorite).toEqual(true);
   });
 });
 
