@@ -5,6 +5,7 @@ import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper'
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 
 export class Category extends Component {
@@ -15,7 +16,7 @@ export class Category extends Component {
       const cleanCategory = pathnameProp.slice(1);
       this.fetchAndDispatch(cleanCategory);
     } catch(error) {
-      //handle the error 404 fail message from state
+      alert(`Apologises, there was an error: ${error}.\n Redirecting Home.`);
     }
   }
 
@@ -27,12 +28,11 @@ export class Category extends Component {
         this.fetchAndDispatch(cleanCategory);
       } 
     } catch(error) {
-      //handle the error 404 fail message from state
+      alert(`Apologises, there was an error: ${error}.\n Redirecting Home.`);
     }
   }
 
   handleClick = async (categories) => {
-    // test it calls fetch quote cat and add category quote
     const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
     const defaultCategories = ['funny', 'life', 'love', 'students', 'positive', 'motivation'];
     const cardCategories = categories[ Math.floor( Math.random() * categories.length ) ];
@@ -52,11 +52,12 @@ export class Category extends Component {
         this.props.addCategoryQuote(newQuote);
       }      
     } catch(error) {
-      //handle the error 404 fail message from state
+      alert(`Apologises, there was an error: ${error}.\n Redirecting Home.`);
     }
   }
 
   handleFavoriteClick = (quoteData) => {
+    console.log(quoteData)
     const { favorite } = quoteData.props.data;
     const favoriteQuote = quoteData.props.data;
     this.props.toggleFavorite(favoriteQuote);
@@ -83,7 +84,7 @@ export class Category extends Component {
         return [ ...categoryQuotes, categoryQuote ];
       }
     } catch(error) {
-      //404 error
+      alert(`Apologises, there was an error: ${error}.\n Redirecting Home.`);
     }
   }
 
@@ -110,7 +111,7 @@ export class Category extends Component {
   
   render() {
     return (
-      <div id="myDiv">
+      <div id="div-scroll-from">
         <div className="all-cards">
           { this.renderCards() }
         </div>
@@ -123,6 +124,7 @@ Category.propTypes = {
   addHomeQuote: PropTypes.func,
   addRandomQuote: PropTypes.func,
   addCategoryQuote: PropTypes.func,
+  toggleFavorite: PropTypes.func,
   handleClick: PropTypes.func,
   handleFavoriteClick: PropTypes.func,
 
@@ -151,15 +153,14 @@ Category.propTypes = {
 export const mapStateToProps = (state) => ({
   homeQuotes: state.homeQuotes,
   randomQuotes: state.randomQuotes,
-  categoryQuotes: state.categoryQuotes,
-  favorites: state.favorites
+  categoryQuotes: state.categoryQuotes
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   addHomeQuote: (homeQuote) => dispatch(addHomeQuote(homeQuote)),
   addRandomQuote: (randomQuote) => dispatch(addRandomQuote(randomQuote)),
   addCategoryQuote: (categoryQuote) => dispatch(addCategoryQuote(categoryQuote)),
-  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote)),
+  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

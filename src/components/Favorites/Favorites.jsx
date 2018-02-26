@@ -3,14 +3,9 @@ import { connect } from 'react-redux';
 import { toggleFavorite } from '../../actions';
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper';
-import { handleClick } from '../Category/Category';
 import './Favorites.css';
 
 export class Favorites extends Component {
-  constructor(props) {
-    super(props)
-
-  }
 
   handleFavoriteClick = (quoteData) => {
     const { favorite } = quoteData.props.data;
@@ -19,26 +14,27 @@ export class Favorites extends Component {
   }
 
   handleClick = () => {
+    console.log(this.props.favorites)
     scrollLeft(this.props.favorites);
   }
   
   renderFavorites = () => {
-    if(!this.props.favorites.length) {
+    const { favorites } = this.props
+    if(!favorites.length) {
       return <h1 className="emptyFavorites">No Favorites...</h1>
     }
-    const { favorites } = this.props
     const favoriteCards = favorites.map( (quote, key) => {
       return <Card key={ quote.id } 
-                  data={ quote } 
-                  handleClick={ this.handleClick } 
-                  handleFavoriteClick={ this.handleFavoriteClick }/>
+                   data={ quote } 
+                   handleClick={ this.handleClick } 
+                   handleFavoriteClick={ this.handleFavoriteClick }/>
     })
     return favoriteCards;
   }
 
   render() {
     return (
-      <div id="myDiv">
+      <div id="div-scroll-from">
         <div className="all-cards">
           { this.renderFavorites() }
         </div>

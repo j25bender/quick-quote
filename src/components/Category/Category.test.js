@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { addHomeQuote, addRandomQuote, addCategoryQuote } from '../../actions';
-import { Category, mapStateToProps, mapDispatchToProps } from './Category';
+import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite } from '../../actions';
+import { Category, mapStateToProps, mapDispatchToProps, fetchAndDispatch } from './Category';
 import Card from '../Card/Card';
 import { fetchRandomQuote, fetchHomeQuote, fetchQuote } from '../../api/apiCalls';
 import { mount } from 'enzyme';
@@ -9,6 +9,7 @@ describe('Category', () => {
   let wrapper;
   let mockfetchAndDispatch;
   let mockAddCategoryQuote;
+  let mockFetchQuote;
   let mockQuoteData = {quote: "Retirement is the ugliest word in the language.", 
                             author: "Ernest Hemingway", 
                             id: "hqV6ZjgFus0xQ58WPhH5hQeF", 
@@ -18,6 +19,7 @@ describe('Category', () => {
   beforeEach( () => {
     mockfetchAndDispatch = jest.fn();
     mockAddCategoryQuote = jest.fn();
+    mockFetchQuote = jest.fn();
     window.fetch = jest.fn().mockImplementation( (url) => {
       return Promise.resolve({
         status: 200,
@@ -25,11 +27,14 @@ describe('Category', () => {
       })
     })
     wrapper = mount(<Category location={ {pathname: "/life", key: 'twms5s'} }
-                                categoryQuote={ [mockQuoteData] }
-                                addCategoryQuote={ mockAddCategoryQuote } />)
+                                categoryQuotes={ [mockQuoteData] }
+                                addCategoryQuote={ mockAddCategoryQuote }
+                                fetchQuote={ mockFetchQuote }
+                                fetchAndDispatch={ mockfetchAndDispatch } />)
   })
 
   it('should match snapshot', () => {
+    expect(wrapper.find('.quote').length).toEqual(1);    
     expect(wrapper).toMatchSnapshot();
   })
 
@@ -37,37 +42,36 @@ describe('Category', () => {
     expect(wrapper.instance().props.addCategoryQuote).toHaveBeenCalled();
   })
   
-  it.only('should update with props.location.key do not equal nextProps.location.key', () => {
+  it('should update with props.location.key do not equal nextProps.location.key', () => {
     wrapper.setProps({ location: {pathname: "/life", key: 'twms5'}});
     expect(wrapper.props().addCategoryQuote).toHaveBeenCalled()
   });
 
+  it('handleClick should call fetchQuote', () => {
+    wrapper.instance().handleClick(['love','funny']);
+    expect(window.fetch).toHaveBeenCalled();
+  });
+
   describe('mapStateToProps', () =>{
     const mockState = {
-      homeQuote: 'home quote',
-      randomQuote: 'random quote',
-      categoryQuote: 'category quote',
-      favorites: 'favorites'
+      homeQuotes: 'home quote',
+      randomQuotes: 'random quote',
+      categoryQuotes: 'category quote',
     }
     
     it('correctly grabs the home quote from the state tree', () => {
       const mapped = mapStateToProps(mockState);
-      expect(mapped.homeQuote).toEqual(mockState.homeQuote);
+      expect(mapped.homeQuotes).toEqual(mockState.homeQuotes);
     })
 
     it('correctly grabs the rand quote from the state tree', () => {
       const mapped = mapStateToProps(mockState);
-      expect(mapped.randomQuote).toEqual(mockState.randomQuote);
+      expect(mapped.randomQuotes).toEqual(mockState.randomQuotes);
     })
 
     it('correcly grabs the category quote from the state tree', () => {
       const mapped = mapStateToProps(mockState);
-      expect(mapped.categoryQuote).toEqual(mockState.categoryQuote);
-    })
-
-    it('correctly grabs the favorites from the state tree', () => {
-      const mapped = mapStateToProps(mockState);
-      expect(mapped.favorites).toEqual(mockState.favorites);
+      expect(mapped.categoryQuotes).toEqual(mockState.categoryQuotes);
     })
   })
 

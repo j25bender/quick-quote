@@ -23,7 +23,7 @@ ShallowWrapper {
           <Route
                     component={[Function]}
                     exact={true}
-                    path="/"
+                    path="/favorites"
           />
           <Route
                     component={[Function]}
@@ -89,7 +89,7 @@ ShallowWrapper {
             <Route
               component={[Function]}
               exact={true}
-              path="/"
+              path="/favorites"
 />,
             Array [
               <Route
@@ -144,7 +144,7 @@ ShallowWrapper {
             "props": Object {
               "component": [Function],
               "exact": true,
-              "path": "/",
+              "path": "/favorites",
             },
             "ref": null,
             "rendered": null,
@@ -288,7 +288,7 @@ ShallowWrapper {
             <Route
                         component={[Function]}
                         exact={true}
-                        path="/"
+                        path="/favorites"
             />
             <Route
                         component={[Function]}
@@ -354,7 +354,7 @@ ShallowWrapper {
               <Route
                 component={[Function]}
                 exact={true}
-                path="/"
+                path="/favorites"
 />,
               Array [
                 <Route
@@ -409,7 +409,7 @@ ShallowWrapper {
               "props": Object {
                 "component": [Function],
                 "exact": true,
-                "path": "/",
+                "path": "/favorites",
               },
               "ref": null,
               "rendered": null,

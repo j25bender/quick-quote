@@ -1,5 +1,6 @@
 
 export const scrollLeft = (quotes) => { 
-  const scrollElement = document.getElementById('myDiv');
-  scrollElement.scrollLeft = quotes.length * window.screen.width;
-}
+  const scrollElement = document.getElementById('div-scroll-from');
+
+  return scrollElement.scrollLeft = quotes.length * window.screen.width;
+};

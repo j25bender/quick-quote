@@ -1,11 +1,11 @@
-#myDiv {
+#div-scroll-from {
   height: 100vh;
   width: 100vw;
   overflow: auto; }
 
 .all-cards {
   height: 100vh;
-  width: 20000px;
+  width: 10000px;
   display: flex;
   flex-direction: row;
   overflow: scroll; }
