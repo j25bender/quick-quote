@@ -17,8 +17,3 @@ export const toggleFavorite = (favoriteQuote) => ({
   type: 'TOGGLE_FAVORITE',
   favoriteQuote
 });
-
-export const renderErrorMessage = (error) => ({
-  type: 'RENDER_ERROR_MESSAGE',
-  error
-});

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { toggleFavorite } from '../../actions';
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper';
-import { handleClick } from '../Category/Category';
 import './Favorites.css';
 
 export class Favorites extends Component {
@@ -15,6 +14,7 @@ export class Favorites extends Component {
   }
 
   handleClick = () => {
+    console.log(this.props.favorites)
     scrollLeft(this.props.favorites);
   }
   
@@ -34,7 +34,7 @@ export class Favorites extends Component {
 
   render() {
     return (
-      <div id="myDiv">
+      <div id="div-scroll-from">
         <div className="all-cards">
           { this.renderFavorites() }
         </div>

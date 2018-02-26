@@ -36,6 +36,14 @@ ShallowWrapper {
                         activeClassName="active"
                         ariaCurrent="true"
                         className="nav"
+                        to="/favorites"
+                >
+                        Favorites
+                </NavLink>
+                <NavLink
+                        activeClassName="active"
+                        ariaCurrent="true"
+                        className="nav"
                         to="/motivation"
                 >
                         Motivation
@@ -129,6 +137,14 @@ ShallowWrapper {
                     activeClassName="active"
                     ariaCurrent="true"
                     className="nav"
+                    to="/favorites"
+          >
+                    Favorites
+          </NavLink>
+          <NavLink
+                    activeClassName="active"
+                    ariaCurrent="true"
+                    className="nav"
                     to="/motivation"
           >
                     Motivation
@@ -217,6 +233,14 @@ ShallowWrapper {
               to="/home"
 >
               Home
+</NavLink>,
+            <NavLink
+              activeClassName="active"
+              ariaCurrent="true"
+              className="nav"
+              to="/favorites"
+>
+              Favorites
 </NavLink>,
             <NavLink
               activeClassName="active"
@@ -318,6 +342,21 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": "Home",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "activeClassName": "active",
+              "ariaCurrent": "true",
+              "children": "Favorites",
+              "className": "nav",
+              "to": "/favorites",
+            },
+            "ref": null,
+            "rendered": "Favorites",
             "type": [Function],
           },
           Object {
@@ -487,6 +526,14 @@ ShallowWrapper {
                               activeClassName="active"
                               ariaCurrent="true"
                               className="nav"
+                              to="/favorites"
+                    >
+                              Favorites
+                    </NavLink>
+                    <NavLink
+                              activeClassName="active"
+                              ariaCurrent="true"
+                              className="nav"
                               to="/motivation"
                     >
                               Motivation
@@ -580,6 +627,14 @@ ShallowWrapper {
                         activeClassName="active"
                         ariaCurrent="true"
                         className="nav"
+                        to="/favorites"
+            >
+                        Favorites
+            </NavLink>
+            <NavLink
+                        activeClassName="active"
+                        ariaCurrent="true"
+                        className="nav"
                         to="/motivation"
             >
                         Motivation
@@ -668,6 +723,14 @@ ShallowWrapper {
                 to="/home"
 >
                 Home
+</NavLink>,
+              <NavLink
+                activeClassName="active"
+                ariaCurrent="true"
+                className="nav"
+                to="/favorites"
+>
+                Favorites
 </NavLink>,
               <NavLink
                 activeClassName="active"
@@ -769,6 +832,21 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": "Home",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "activeClassName": "active",
+                "ariaCurrent": "true",
+                "children": "Favorites",
+                "className": "nav",
+                "to": "/favorites",
+              },
+              "ref": null,
+              "rendered": "Favorites",
               "type": [Function],
             },
             Object {
