@@ -4,17 +4,16 @@ import { toggleFavorite } from '../../actions';
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper';
 import './Favorites.css';
+import PropTypes from 'prop-types';
 
 export class Favorites extends Component {
 
   handleFavoriteClick = (quoteData) => {
-    const { favorite } = quoteData.props.data;
     const favoriteQuote = quoteData.props.data;
     this.props.toggleFavorite(favoriteQuote);
   }
 
   handleClick = () => {
-    console.log(this.props.favorites)
     scrollLeft(this.props.favorites);
   }
   
@@ -42,6 +41,19 @@ export class Favorites extends Component {
     )
   }
 }
+
+Favorites.propTypes = {
+  toggleFavorite: PropTypes.func,
+  handleClick: PropTypes.func,
+  handleFavoriteClick: PropTypes.func,
+
+  favoritess: PropTypes.arrayOf(PropTypes.shape({
+    quote: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string)
+  }))
+};
 
 export const mapStateToProps = (state) => ({
   favorites: state.favorites

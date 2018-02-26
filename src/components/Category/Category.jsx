@@ -5,7 +5,6 @@ import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper'
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 
 export class Category extends Component {
@@ -57,14 +56,11 @@ export class Category extends Component {
   }
 
   handleFavoriteClick = (quoteData) => {
-    console.log(quoteData)
-    const { favorite } = quoteData.props.data;
     const favoriteQuote = quoteData.props.data;
     this.props.toggleFavorite(favoriteQuote);
   }
 
   async fetchAndDispatch(category) {
-    // test given a category the correct fetch and add action gets called and errors
     const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
 
     try {
@@ -89,7 +85,6 @@ export class Category extends Component {
   }
 
   renderCards = () => {
-    // test w snapshot passing in diff quotes
     const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
     const pathnameProp = this.props.location.pathname;
     let quoteToUse
