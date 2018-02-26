@@ -11,7 +11,7 @@
   font-size: 30px;
   text-shadow: 1px 1px ghostwhite;
   font-weight: bold;
-  background-image: url("../../assets/landscape1.jpg");
+  background-image: url("../../assets/landscape9.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
@@ -43,4 +43,4 @@ div.categories p {
   font-size: 20px;
   padding: 5px 5px;
   font-size: 15px;
-  overflow-y: hidden; }
+  overflow-y: scroll; }

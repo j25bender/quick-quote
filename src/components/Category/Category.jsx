@@ -15,7 +15,7 @@ export class Category extends Component {
       const cleanCategory = pathnameProp.slice(1);
       this.fetchAndDispatch(cleanCategory);
     } catch(error) {
-      alert(`Apologises, there was an error: ${error}.\n Redirecting Home.`);
+      alert(`Apologises, there was an error: ${error.message}.`);
     }
   }
 
@@ -27,7 +27,7 @@ export class Category extends Component {
         this.fetchAndDispatch(cleanCategory);
       } 
     } catch(error) {
-      alert(`Apologises, there was an error: ${error}.\n Redirecting Home.`);
+      alert(`Apologises, there was an error: ${error.message}.`);
     }
   }
 
@@ -51,7 +51,7 @@ export class Category extends Component {
         this.props.addCategoryQuote(newQuote);
       }      
     } catch(error) {
-      alert(`Apologises, there was an error: ${error}.\n Redirecting Home.`);
+      alert(`Apologises, there was an error: ${error.message}.`);
     }
   }
 
@@ -80,7 +80,7 @@ export class Category extends Component {
         return [ ...categoryQuotes, categoryQuote ];
       }
     } catch(error) {
-      alert(`Apologises, there was an error: ${error}.\n Redirecting Home.`);
+      alert(`Apologises, there was an error: ${error.message}.`);
     }
   }
 
