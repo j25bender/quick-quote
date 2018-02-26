@@ -14,7 +14,7 @@ const Card = (props) => {
   if(props) {
     const favoriteCheck = props.data.favorite ? "favorite" : "nonFavorite";
     const categoryList = categories ? categories.map( (category, index) => {
-                                                                            <p key={ index }>{ category }</p>} )                      : 
+                                                                            return <p key={ index }>{ category }</p>} )               : 
                                                                             <div className="no-category"></div>;
     return (
       <div>

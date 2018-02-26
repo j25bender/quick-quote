@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
-import { scrollLeft } from '../../helper/helper';
-import { connect } from 'react-redux';
 
 export class Header extends Component {
   render() {
