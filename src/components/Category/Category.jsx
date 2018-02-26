@@ -45,7 +45,7 @@ export class Category extends Component {
         this.props.addHomeQuote(newQuote);
       } else if (pathnameProp.includes('random')) {
         scrollLeft(randomQuotes);
-        this.props.addRandomQuote(newQuote)
+        this.props.addRandomQuote(newQuote);
       } else {
         scrollLeft(categoryQuotes);
         this.props.addCategoryQuote(newQuote);

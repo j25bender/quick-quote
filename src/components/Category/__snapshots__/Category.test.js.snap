@@ -429,7 +429,7 @@ ReactWrapper {
           "_debugOwner": [Circular],
           "_debugSource": Object {
             "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Category/Category.jsx",
-            "lineNumber": 114,
+            "lineNumber": 109,
           },
           "alternate": null,
           "child": FiberNode {
@@ -438,7 +438,7 @@ ReactWrapper {
             "_debugOwner": [Circular],
             "_debugSource": Object {
               "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Category/Category.jsx",
-              "lineNumber": 115,
+              "lineNumber": 110,
             },
             "alternate": null,
             "child": FiberNode {
@@ -447,7 +447,7 @@ ReactWrapper {
               "_debugOwner": [Circular],
               "_debugSource": Object {
                 "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Category/Category.jsx",
-                "lineNumber": 104,
+                "lineNumber": 99,
               },
               "alternate": null,
               "child": FiberNode {
@@ -2474,7 +2474,7 @@ ReactWrapper {
             "_debugOwner": [Circular],
             "_debugSource": Object {
               "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Category/Category.jsx",
-              "lineNumber": 114,
+              "lineNumber": 109,
             },
             "alternate": null,
             "child": FiberNode {
@@ -2483,7 +2483,7 @@ ReactWrapper {
               "_debugOwner": [Circular],
               "_debugSource": Object {
                 "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Category/Category.jsx",
-                "lineNumber": 115,
+                "lineNumber": 110,
               },
               "alternate": null,
               "child": FiberNode {
@@ -2492,7 +2492,7 @@ ReactWrapper {
                 "_debugOwner": [Circular],
                 "_debugSource": Object {
                   "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Category/Category.jsx",
-                  "lineNumber": 104,
+                  "lineNumber": 99,
                 },
                 "alternate": null,
                 "child": FiberNode {

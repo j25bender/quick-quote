@@ -379,7 +379,7 @@ ReactWrapper {
           "_debugOwner": [Circular],
           "_debugSource": Object {
             "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Favorites/Favorites.jsx",
-            "lineNumber": 37,
+            "lineNumber": 36,
           },
           "alternate": null,
           "child": FiberNode {
@@ -388,7 +388,7 @@ ReactWrapper {
             "_debugOwner": [Circular],
             "_debugSource": Object {
               "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Favorites/Favorites.jsx",
-              "lineNumber": 38,
+              "lineNumber": 37,
             },
             "alternate": null,
             "child": FiberNode {
@@ -397,7 +397,7 @@ ReactWrapper {
               "_debugOwner": [Circular],
               "_debugSource": Object {
                 "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Favorites/Favorites.jsx",
-                "lineNumber": 27,
+                "lineNumber": 26,
               },
               "alternate": null,
               "child": FiberNode {
@@ -2322,7 +2322,7 @@ ReactWrapper {
             "_debugOwner": [Circular],
             "_debugSource": Object {
               "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Favorites/Favorites.jsx",
-              "lineNumber": 37,
+              "lineNumber": 36,
             },
             "alternate": null,
             "child": FiberNode {
@@ -2331,7 +2331,7 @@ ReactWrapper {
               "_debugOwner": [Circular],
               "_debugSource": Object {
                 "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Favorites/Favorites.jsx",
-                "lineNumber": 38,
+                "lineNumber": 37,
               },
               "alternate": null,
               "child": FiberNode {
@@ -2340,7 +2340,7 @@ ReactWrapper {
                 "_debugOwner": [Circular],
                 "_debugSource": Object {
                   "fileName": "/Users/jbender/turing/mod3/quick-quote/src/components/Favorites/Favorites.jsx",
-                  "lineNumber": 27,
+                  "lineNumber": 26,
                 },
                 "alternate": null,
                 "child": FiberNode {

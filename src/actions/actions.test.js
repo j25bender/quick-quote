@@ -42,4 +42,19 @@ describe('actions Tests', () => {
 
     expect(action.addCategoryQuote(categoryQuote)).toEqual(expectedAction);
   });
+
+  it('toggleFavorite should have type ADD_HOME_QUOTE', () => {
+    const favoriteQuote = {quote: "Although golf ...", 
+      author: "Dave Barry", 
+      id: "wpkXjtM5DgxjJIYwJyBNXweF", 
+      categories: Array(6),
+      favorite: false};
+    
+    const expectedAction = {
+      type: 'TOGGLE_FAVORITE',
+      favoriteQuote
+    };
+
+    expect(action.toggleFavorite(favoriteQuote)).toEqual(expectedAction);
+  });
 });
