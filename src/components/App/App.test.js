@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import App from './App';
 import { configure, shallow } from 'enzyme';
@@ -9,6 +10,7 @@ describe('App Component Test', () => {
   
   it('should render App component correctly', () => {
     const wrapper = shallow(<App />);
+
     expect(wrapper).toMatchSnapshot();
-  })
-})
+  });
+});

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import Header from './Header';
 import { configure, shallow } from 'enzyme';
@@ -9,6 +10,7 @@ describe('Header Component Test', () => {
 
   it('should render without blowing up (oh, and match snapshot)', () => {
     const wrapper = shallow(<Header />);
+
     expect(wrapper).toMatchSnapshot();
   });
 });
