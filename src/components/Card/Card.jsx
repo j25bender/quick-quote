@@ -1,38 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Card.css'
 import PropTypes from 'prop-types';
 
-//make this a class and move logic out of render
 //remove if(props) thats always goinng to be true
-const Card = (props) => {
-  const { quote, author, categories } = props.data;
-  const cardHtml = <div>
-                     <h4 className="quote">{ quote }</h4>
-                     <h5 className="author" defaultValue="~Anonymous">{ author }</h5>
-                     <button className="favorite-button" 
-                             onClick={ () => props.handleFavoriteClick({ props }) }>
-                     </button>
-                   </div>
-  if(props) {
+export class Card extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      loading: true
+    }
+  }
+
+  renderCards(props) {
+    const { quote, author, categories } = props.data;
+    const cardHtml = <div>
+                       <h4 className="quote">{ quote }</h4>
+                       <h5 className="author" defaultValue="~Anonymous">{ author }</h5>
+                       <button className="favorite-button" 
+                               onClick={ () => props.handleFavoriteClick({ props }) }>
+                       </button>
+                     </div>
+    
     const favoriteCheck = props.data.favorite ? "favorite" : "nonFavorite";
     const categoryList = categories ? categories.map( (category, index) => {
                                                                             return <p key={ index }>{ category }</p>} )               : 
                                                                             <div className="no-category"></div>;
     return (
-      <div>
-        <div className="quote-container">
-          <div className={ favoriteCheck }>
-            { cardHtml }
-            <div className="categories">
-              { categoryList }
-            </div>
-          </div>
-          <button className="next-button" 
-                  onClick={ () => props.handleClick(categories) }>
-          </button>
+      <div className="quote-container">
+        <div className={ favoriteCheck }>
+        { cardHtml }
+        <div className="categories">
+          { categoryList }
         </div>
+        </div>
+        <button className="next-button" 
+                onClick={ () => props.handleClick(categories) }>
+        </button>
       </div>
     )
+  }
+
+  render() {
+    return (
+      <div>
+        { this.renderCards() }
+      </div>
+    );
   }
 }
 

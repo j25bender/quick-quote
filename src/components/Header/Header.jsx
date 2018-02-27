@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
-// bring back the slash for home 
+
 export class Header extends Component {
   render() {
     return (
@@ -9,7 +9,6 @@ export class Header extends Component {
         <div className="header-section">
           <header>
           <h1>QUICK QUOTE</h1>
-            <NavLink to='/home' className='nav'>Home</NavLink>
             <NavLink to='/favorites' className='nav'>Favorites</NavLink>
             <NavLink to='/motivation' className='nav'>Motivation</NavLink>
             <NavLink to='/positive' className='nav'>Positive</NavLink>

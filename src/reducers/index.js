@@ -8,7 +8,8 @@ const rootReducer = combineReducers({
   homeQuotes: homeQuoteReducer,
   randomQuotes: randomQuoteReducer,  
   categoryQuotes: categoryQuoteReducer,
-  favorites: favoriteQuoteReducer
+  favorites: favoriteQuoteReducer,
+  loading: loadingReducer
 });
 
 export default rootReducer;

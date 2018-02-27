@@ -16,9 +16,9 @@ export class Category extends Component {
   constructor() {
     super()
 
-    this.state = {
-      loading: true
-    }
+    // this.state = {
+    //   loading: true
+    // }
   }
 
   async componentDidMount() {
@@ -26,9 +26,10 @@ export class Category extends Component {
       const pathnameProp = this.props.location.pathname;    
       const cleanCategory = pathnameProp.slice(1);
       await this.fetchAndDispatch(cleanCategory);
-      this.setState({
-        loading: false
-      });
+      this.props.toggleLoading(false);
+      // this.setState({
+      //   loading: false
+      // });
     } catch(error) {
       alert(`Apologises, there was an error: ${error.message}.`);
     }
@@ -120,7 +121,8 @@ export class Category extends Component {
   }
 
   loading() {
-    if(this.state.loading) {
+    const { loading } = this.props;
+    if(loading) {
       return <div className="loading">HELLO!</div>
     }
   }
@@ -170,14 +172,16 @@ Category.propTypes = {
 export const mapStateToProps = (state) => ({
   homeQuotes: state.homeQuotes,
   randomQuotes: state.randomQuotes,
-  categoryQuotes: state.categoryQuotes
+  categoryQuotes: state.categoryQuotes,
+  loading: state.loading
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   addHomeQuote: (homeQuote) => dispatch(addHomeQuote(homeQuote)),
   addRandomQuote: (randomQuote) => dispatch(addRandomQuote(randomQuote)),
   addCategoryQuote: (categoryQuote) => dispatch(addCategoryQuote(categoryQuote)),
-  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote))
+  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote)),
+  toggleLoading: (status) => dispatch(toggleLoading(status))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

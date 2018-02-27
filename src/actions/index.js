@@ -17,3 +17,8 @@ export const toggleFavorite = (favoriteQuote) => ({
   type: 'TOGGLE_FAVORITE',
   favoriteQuote
 });
+
+export const toggleLoading = (status) => ({
+  type: 'TOGGLE_LOADING',
+  status
+});
