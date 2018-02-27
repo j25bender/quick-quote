@@ -7,13 +7,28 @@ import { scrollLeft } from '../../helper/helper'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+//break out categories into diffrent state tree objects
+//backgrounds same for each category
+//this.props.history.push('./404) build out error component
+//addCategoryQuote pass in category as well could add different action for each case 'ADD_LIFE_QUOTE"
+//add loading screen
 export class Category extends Component {
+  constructor() {
+    super()
 
-  componentDidMount() {
+    this.state = {
+      loading: true
+    }
+  }
+
+  async componentDidMount() {
     try {
       const pathnameProp = this.props.location.pathname;    
       const cleanCategory = pathnameProp.slice(1);
-      this.fetchAndDispatch(cleanCategory);
+      await this.fetchAndDispatch(cleanCategory);
+      this.setState({
+        loading: false
+      });
     } catch(error) {
       alert(`Apologises, there was an error: ${error.message}.`);
     }
@@ -103,11 +118,18 @@ export class Category extends Component {
     } )
     return cardsToRender
   }
+
+  loading() {
+    if(this.state.loading) {
+      return <div className="loading">HELLO!</div>
+    }
+  }
   
   render() {
     return (
       <div id="div-scroll-from">
         <div className="all-cards">
+          { this.loading() }
           { this.renderCards() }
         </div>
       </div>

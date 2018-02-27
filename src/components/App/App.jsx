@@ -6,6 +6,7 @@ import Favorites from '../Favorites/Favorites';
 import { Route, Switch } from 'react-router-dom';
 
 export class App extends Component {
+  //move logic out of render should be a function 
   render() {
     const routes = [ '/home', '/random', '/motivation', '/positive', '/life', '/funny',
                      '/love', '/students', '/inspiration', '/meditation' ]; 

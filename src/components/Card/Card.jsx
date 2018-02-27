@@ -2,6 +2,8 @@ import React from 'react';
 import './Card.css'
 import PropTypes from 'prop-types';
 
+//make this a class and move logic out of render
+//remove if(props) thats always goinng to be true
 const Card = (props) => {
   const { quote, author, categories } = props.data;
   const cardHtml = <div>
