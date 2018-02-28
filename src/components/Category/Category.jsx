@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Category.css';
-import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite } from '../../actions';
+import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite, toggleLoading } from '../../actions';
 import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls';
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper'
@@ -16,9 +16,9 @@ export class Category extends Component {
   constructor() {
     super()
 
-    // this.state = {
-    //   loading: true
-    // }
+    this.state = {
+      loading: true
+    }
   }
 
   async componentDidMount() {
@@ -27,9 +27,9 @@ export class Category extends Component {
       const cleanCategory = pathnameProp.slice(1);
       await this.fetchAndDispatch(cleanCategory);
       this.props.toggleLoading(false);
-      // this.setState({
-      //   loading: false
-      // });
+      this.setState({
+        loading: false
+      });
     } catch(error) {
       alert(`Apologises, there was an error: ${error.message}.`);
     }
@@ -111,18 +111,20 @@ export class Category extends Component {
     } else {
       quoteToUse = categoryQuotes
     }
-    const cardsToRender = quoteToUse.map( quote => {
+    if(!this.props.loading.status){
+      console.log('not loading jorge')
+      const cardsToRender = quoteToUse.map( quote => {
       return <Card key={ quote.id }
                    data={ quote } 
                    handleClick={ this.handleClick } 
                    handleFavoriteClick={ this.handleFavoriteClick }/>
     } )
     return cardsToRender
+    }
   }
 
   loading() {
-    const { loading } = this.props;
-    if(loading) {
+    if(this.props.loading.status) {
       return <div className="loading">HELLO!</div>
     }
   }
