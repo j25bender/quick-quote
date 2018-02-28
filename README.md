@@ -20,8 +20,9 @@ You may purchase an API key from https://theysaidso.com/
 For $5 a month you may make 1,000 calls a day. Other plans available.
 
 Add the API key to the src/api/apiKey.js file.
-![Quick Quote4](https://i.imgur.com/5rKvEaj.png)
-
+```
+export const apiKey = 'Add-API-Key-Here';
+```
 ## Tests
 ```
 npm run test
