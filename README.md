@@ -9,12 +9,10 @@ for a laugh.
 
 ## Installation
 ```
-git clone
+git clone https://github.com/j25bender/quick-quote.git
+npm install
+npm start
 ```
-![Quick Quote1](https://i.imgur.com/Lao5o73.png)
-![Quick Quote2](https://i.imgur.com/fRXFXgI.png)
-![Quick Quote3](https://i.imgur.com/KLbZXNK.png)
-
 
 ## API Reference
 
@@ -25,8 +23,9 @@ Add the API key to the src/api/apiKey.js file.
 ![Quick Quote4](https://i.imgur.com/5rKvEaj.png)
 
 ## Tests
-
-![Quick Quote5](https://i.imgur.com/Jy9VtYB.png)
+```
+npm run test
+```
 
 ## Contributors
 
