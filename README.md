@@ -8,7 +8,9 @@ I find it is important to draw wisdom from many sources and to have maxims to li
 for a laugh.
 
 ## Installation
-
+```
+git clone
+```
 ![Quick Quote1](https://i.imgur.com/Lao5o73.png)
 ![Quick Quote2](https://i.imgur.com/fRXFXgI.png)
 ![Quick Quote3](https://i.imgur.com/KLbZXNK.png)
