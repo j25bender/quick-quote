@@ -1,16 +1,17 @@
 #div-scroll-from {
   height: 100vh;
   width: 100vw;
-  overflow: auto; }
+  overflow: hidden; }
 
 .all-cards {
   height: 100vh;
   width: 10000px;
   display: flex;
   flex-direction: row;
-  overflow: scroll; }
+  overflow: hidden; }
 
 .next-button {
+  cursor: pointer;
   position: absolute;
   background-image: url("../../assets/right-arrow3.png");
   background-size: 40px;
@@ -21,16 +22,21 @@
   border: none;
   right: 30px;
   top: 50%;
-  animation: slide 0.5s forwards; }
+  outline: 0; }
+
+.next-button:hover {
+  top: 49.75%; }
 
 .favorite-button {
+  cursor: pointer;
   background-image: url("../../assets/unfavorited.png");
   background-size: 40px;
   width: 40px;
   height: 40px;
   background-repeat: no-repeat;
   background-color: transparent;
-  border: none; }
+  border: none;
+  outline: 0; }
 
 .favorite-button:hover {
   background-image: url("../../assets/hover-favorite.png");
@@ -39,7 +45,8 @@
   height: 40px;
   background-repeat: no-repeat;
   background-color: transparent;
-  border: none; }
+  border: none;
+  outline: 0; }
 
 .show {
   margin-right: 500px; }

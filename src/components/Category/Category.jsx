@@ -9,9 +9,7 @@ import PropTypes from 'prop-types';
 
 //break out categories into diffrent state tree objects
 //backgrounds same for each category
-//this.props.history.push('./404) build out error component
 //addCategoryQuote pass in category as well could add different action for each case 'ADD_LIFE_QUOTE"
-//add loading screen
 export class Category extends Component {
   constructor() {
     super()
@@ -31,7 +29,7 @@ export class Category extends Component {
         loading: false
       });
     } catch(error) {
-      alert(`Apologises, there was an error: ${error.message}.`);
+      this.props.history.push('/random');
     }
   }
 
@@ -43,7 +41,7 @@ export class Category extends Component {
         this.fetchAndDispatch(cleanCategory);
       } 
     } catch(error) {
-      alert(`Apologises, there was an error: ${error.message}.`);
+      this.props.history.push('/random');
     }
   }
 
@@ -67,7 +65,7 @@ export class Category extends Component {
         this.props.addCategoryQuote(newQuote);
       }      
     } catch(error) {
-      alert(`Apologises, there was an error: ${error.message}.`);
+      this.props.history.push('/random');
     }
   }
 
@@ -96,7 +94,7 @@ export class Category extends Component {
         return [ ...categoryQuotes, categoryQuote ];
       }
     } catch(error) {
-      alert(`Apologises, there was an error: ${error.message}.`);
+      this.props.history.push('/random');
     }
   }
 
@@ -112,7 +110,6 @@ export class Category extends Component {
       quoteToUse = categoryQuotes
     }
     if(!this.props.loading.status){
-      console.log('not loading jorge')
       const cardsToRender = quoteToUse.map( quote => {
       return <Card key={ quote.id }
                    data={ quote } 
