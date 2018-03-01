@@ -25,7 +25,7 @@ export const fetchRandomQuote = async () => {
 }; 
 
 export const fetchHomeQuote = async () => {
-  const maxLength = Math.floor( (Math.random() * 300) + 100 );
+  const maxLength = Math.floor( (Math.random() * 300) + 200 );
 
   try {
     const initialMax100Fetch = await fetch(`http://quotes.rest/quote/search.json?maxlength=${maxLength}`, {
@@ -50,7 +50,7 @@ export const fetchHomeQuote = async () => {
 };
 
 export const fetchQuote = async (category) => {
-  const maxLength = Math.floor( (Math.random() * 300) + 100 );
+  const maxLength = Math.floor( (Math.random() * 300) + 200 );
 
   try {
     const initialCategoriesFetch = await fetch(`http://quotes.rest/quote/search?category=${category}&minlength=100&maxlength=${maxLength}&private=false`, {

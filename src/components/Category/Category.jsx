@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
 import './Category.css';
-import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite } from '../../actions';
+import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite, toggleLoading } from '../../actions';
 import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls';
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+//break out categories into diffrent state tree objects
+//backgrounds same for each category
+//addCategoryQuote pass in category as well could add different action for each case 'ADD_LIFE_QUOTE"
 export class Category extends Component {
+  constructor() {
+    super()
 
-  componentDidMount() {
+    this.state = {
+      loading: true
+    }
+  }
+
+  async componentDidMount() {
     try {
       const pathnameProp = this.props.location.pathname;    
       const cleanCategory = pathnameProp.slice(1);
-      this.fetchAndDispatch(cleanCategory);
+      await this.fetchAndDispatch(cleanCategory);
+      this.props.toggleLoading(false);
+      this.setState({
+        loading: false
+      });
     } catch(error) {
-      alert(`Apologises, there was an error: ${error.message}.`);
+      this.props.history.push('/random');
     }
   }
 
@@ -27,7 +41,7 @@ export class Category extends Component {
         this.fetchAndDispatch(cleanCategory);
       } 
     } catch(error) {
-      alert(`Apologises, there was an error: ${error.message}.`);
+      this.props.history.push('/random');
     }
   }
 
@@ -51,7 +65,7 @@ export class Category extends Component {
         this.props.addCategoryQuote(newQuote);
       }      
     } catch(error) {
-      alert(`Apologises, there was an error: ${error.message}.`);
+      this.props.history.push('/random');
     }
   }
 
@@ -80,7 +94,7 @@ export class Category extends Component {
         return [ ...categoryQuotes, categoryQuote ];
       }
     } catch(error) {
-      alert(`Apologises, there was an error: ${error.message}.`);
+      this.props.history.push('/random');
     }
   }
 
@@ -95,19 +109,28 @@ export class Category extends Component {
     } else {
       quoteToUse = categoryQuotes
     }
-    const cardsToRender = quoteToUse.map( quote => {
+    if(!this.props.loading.status){
+      const cardsToRender = quoteToUse.map( quote => {
       return <Card key={ quote.id }
                    data={ quote } 
                    handleClick={ this.handleClick } 
                    handleFavoriteClick={ this.handleFavoriteClick }/>
     } )
     return cardsToRender
+    }
+  }
+
+  loading() {
+    if(this.props.loading.status) {
+      return <div className="loading">HELLO!</div>
+    }
   }
   
   render() {
     return (
       <div id="div-scroll-from">
         <div className="all-cards">
+          { this.loading() }
           { this.renderCards() }
         </div>
       </div>
@@ -148,14 +171,16 @@ Category.propTypes = {
 export const mapStateToProps = (state) => ({
   homeQuotes: state.homeQuotes,
   randomQuotes: state.randomQuotes,
-  categoryQuotes: state.categoryQuotes
+  categoryQuotes: state.categoryQuotes,
+  loading: state.loading
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   addHomeQuote: (homeQuote) => dispatch(addHomeQuote(homeQuote)),
   addRandomQuote: (randomQuote) => dispatch(addRandomQuote(randomQuote)),
   addCategoryQuote: (categoryQuote) => dispatch(addCategoryQuote(categoryQuote)),
-  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote))
+  toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote)),
+  toggleLoading: (status) => dispatch(toggleLoading(status))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

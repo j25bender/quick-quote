@@ -12,7 +12,7 @@
   font-size: 30px;
   text-shadow: 1px 1px ghostwhite;
   font-weight: bold;
-  $imgKey: random(11);
+  $imgKey: random(8);
   background-image: url('../../assets/landscape#{$imgKey}.jpg');
   background-repeat: no-repeat;
   background-position: center;

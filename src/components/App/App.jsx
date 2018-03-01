@@ -6,18 +6,23 @@ import Favorites from '../Favorites/Favorites';
 import { Route, Switch } from 'react-router-dom';
 
 export class App extends Component {
-  render() {
-    const routes = [ '/home', '/random', '/motivation', '/positive', '/life', '/funny',
-                     '/love', '/students', '/inspiration', '/meditation' ]; 
+
+  renderRoutes() {
+    const routes = [ '/random', '/motivation', '/positive', '/life', '/funny',
+    '/love', '/students', '/inspiration', '/meditation' ]; 
     const renderRoutes = routes.map( (route, index) => <Route key={ index }
-                                                              path={ route }
-                                                              component={ Category } /> );
+                                             path={ route }
+                                             component={ Category } /> );
+  }
+
+  render() {
     return (
       <div className="App" >
         <Header />
         <Switch>
+          <Route path='/' component={ Category } />
           <Route exact path='/favorites' component={ Favorites } />
-          { renderRoutes }
+          { this.renderRoutes() }
         </Switch>
       </div>
     );
