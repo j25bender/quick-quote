@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import './Category.css';
-import { addHomeQuote, addRandomQuote, addCategoryQuote, toggleFavorite, toggleLoading } from '../../actions';
-import { fetchHomeQuote, fetchRandomQuote, fetchQuote } from '../../api/apiCalls';
+import { addRandomQuote, addCategoryQuote, toggleFavorite, toggleLoading } from '../../actions';
+import { fetchRandomQuote, fetchQuote } from '../../api/apiCalls';
 import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-//break out categories into diffrent state tree objects
-//backgrounds same for each category
-//addCategoryQuote pass in category as well could add different action for each case 'ADD_LIFE_QUOTE"
 export class Category extends Component {
   constructor() {
     super()
@@ -46,7 +43,7 @@ export class Category extends Component {
   }
 
   handleClick = async (categories) => {
-    const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
+    const { randomQuotes, categoryQuotes } = this.props;
     const defaultCategories = ['funny', 'life', 'love', 'students', 'positive', 'motivation'];
     const cardCategories = categories[ Math.floor( Math.random() * categories.length ) ];
     const randomCategory = categories.length >= 2 ? cardCategories : defaultCategories[ Math.floor( Math.random() * defaultCategories.length ) ];
@@ -54,10 +51,7 @@ export class Category extends Component {
     try {
       const newQuote = await fetchQuote(randomCategory);
       const pathnameProp = this.props.location.pathname;
-      if(pathnameProp.includes('home')) {
-        scrollLeft(homeQuotes);
-        this.props.addHomeQuote(newQuote);
-      } else if (pathnameProp.includes('random')) {
+      if(pathnameProp.includes('random')) {
         scrollLeft(randomQuotes);
         this.props.addRandomQuote(newQuote);
       } else {
@@ -75,19 +69,13 @@ export class Category extends Component {
   }
 
   async fetchAndDispatch(category) {
-    const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
+    const { randomQuotes, categoryQuotes } = this.props;
 
     try {
-      if(category === 'home') {
-        const homeQuote = await fetchHomeQuote();
-        this.props.addHomeQuote(homeQuote);
-        return [ ...homeQuotes, homeQuote ];
-
-      } else if (category === 'random') {
+      if(category === 'random') {
         const randomQuote = await fetchRandomQuote();
         this.props.addRandomQuote(randomQuote);
         return [ ...randomQuotes, randomQuote ];
-        
       } else {
         const categoryQuote = await fetchQuote(category);
         this.props.addCategoryQuote(categoryQuote);
@@ -99,12 +87,10 @@ export class Category extends Component {
   }
 
   renderCards = () => {
-    const { homeQuotes, randomQuotes, categoryQuotes } = this.props;
+    const { randomQuotes, categoryQuotes } = this.props;
     const pathnameProp = this.props.location.pathname;
     let quoteToUse
-    if(pathnameProp.includes('home')) {
-      quoteToUse = homeQuotes
-    } else if(pathnameProp.includes('random')) {
+    if(pathnameProp.includes('random')) {
       quoteToUse = randomQuotes
     } else {
       quoteToUse = categoryQuotes
@@ -139,19 +125,11 @@ export class Category extends Component {
 }
 
 Category.propTypes = {
-  addHomeQuote: PropTypes.func,
   addRandomQuote: PropTypes.func,
   addCategoryQuote: PropTypes.func,
   toggleFavorite: PropTypes.func,
   handleClick: PropTypes.func,
   handleFavoriteClick: PropTypes.func,
-
-  homeQuotes: PropTypes.arrayOf(PropTypes.shape({
-    quote: PropTypes.string.isRequired,
-    author: PropTypes.string,
-    id: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.string)
-  })),
 
   randomQuotes: PropTypes.arrayOf(PropTypes.shape({
     quote: PropTypes.string.isRequired,
@@ -176,7 +154,6 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  addHomeQuote: (homeQuote) => dispatch(addHomeQuote(homeQuote)),
   addRandomQuote: (randomQuote) => dispatch(addRandomQuote(randomQuote)),
   addCategoryQuote: (categoryQuote) => dispatch(addCategoryQuote(categoryQuote)),
   toggleFavorite: (favoriteQuote) => dispatch(toggleFavorite(favoriteQuote)),

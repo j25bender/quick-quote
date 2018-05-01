@@ -5,7 +5,7 @@
 
 .all-cards {
   height: 100vh;
-  width: 10000px;
+  width: fit-content;
   display: flex;
   flex-direction: row;
   overflow: hidden; }

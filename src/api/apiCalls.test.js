@@ -18,12 +18,6 @@ describe('apiCalls fetch success Tests', () => {
     expect(window.fetch).toHaveBeenCalled();
   });
 
-  it('fetchHomeQuote should fetch if status is 200', () => {
-    expect(window.fetch).not.toHaveBeenCalled();
-    fetchHomeQuote();
-    expect(window.fetch).toHaveBeenCalled();
-  });
-
   it('fetchQuote should fetch if status is 200', () => {
     expect(window.fetch).not.toHaveBeenCalled();
     fetchQuote('funny');
@@ -42,10 +36,6 @@ describe('apiCalls fail to fetch Tests', () => {
 
   it('fetchRandomQuote should fail fetch if status is not 200', async () => {
     expect(fetchRandomQuote()).rejects.toEqual(Error ('fetchRandomQuote failed to fetch due to: TypeError: initialRandomFetch.json is not a function'));
-  });
-
-  it('fetchHomeQuote should fail fetch if status is not 200', async () => {
-    expect(fetchHomeQuote()).rejects.toEqual(Error ('fetchHomeQuote failed to fetch due to: TypeError: initialMax100Fetch.json is not a function'));
   });
 
   it('fetchQuote should fail fetch if status is not 200', async () => {
