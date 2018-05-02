@@ -107,7 +107,7 @@ export class Category extends Component {
   }
 
   loading() {
-    if(this.props.loading.status) {
+    if(this.state.loading.status) {
       return <div className="loading">HELLO!</div>
     }
   }
