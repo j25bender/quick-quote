@@ -55,16 +55,9 @@ describe('Category', () => {
 
   describe('mapStateToProps', () =>{
     const mockState = {
-      homeQuotes: 'home quote',
       randomQuotes: 'random quote',
       categoryQuotes: 'category quote',
     };
-    
-    it('correctly grabs the home quote from the state tree', () => {
-      const mapped = mapStateToProps(mockState);
-
-      expect(mapped.homeQuotes).toEqual(mockState.homeQuotes);
-    });
 
     it('correctly grabs the rand quote from the state tree', () => {
       const mapped = mapStateToProps(mockState);
@@ -81,13 +74,6 @@ describe('Category', () => {
 
   describe('mapDispatchToProps', () => {
     const mockDispatch = jest.fn();
-
-    it('addHomeQoute should call dispatch', () => {
-      const mapped = mapDispatchToProps(mockDispatch);
-
-      mapped.addHomeQuote();
-      expect(mockDispatch).toHaveBeenCalled();
-    });
 
     it('addRandomQuote should call dispatch', () => {
       const mapped = mapDispatchToProps(mockDispatch);

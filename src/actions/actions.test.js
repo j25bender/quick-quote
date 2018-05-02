@@ -15,20 +15,6 @@ describe('actions Tests', () => {
     expect(action.addRandomQuote(randomQuote)).toEqual(expectedAction);
   });
 
-  it('addHomeQuote should have type ADD_HOME_QUOTE', () => {
-    const homeQuote = {quote: "I just think people...", 
-      author: "Iain Banks", 
-      id: "X4r3x8BIRu6ZZNcpr_49WQeF", 
-      categories: Array(1)};
-
-    const expectedAction = {
-      type: 'ADD_HOME_QUOTE',
-      homeQuote
-    };
-
-    expect(action.addHomeQuote(homeQuote)).toEqual(expectedAction);
-  });
-
   it('addCategoryQuote should have type ADD_HOME_QUOTE', () => {
     const categoryQuote = {quote: "Although golf ...", 
       author: "Dave Barry", 

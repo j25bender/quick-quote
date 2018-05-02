@@ -5,7 +5,7 @@ import Card from '../Card/Card';
 import { scrollLeft } from '../../helper/helper';
 import './Favorites.css';
 import PropTypes from 'prop-types';
-//icon stays highlighted
+
 export class Favorites extends Component {
 
   handleFavoriteClick = (quoteData) => {

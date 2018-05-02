@@ -3,11 +3,6 @@ export const addRandomQuote = (randomQuote) => ({
   randomQuote
 });
 
-export const addHomeQuote = (homeQuote) => ({
-  type: 'ADD_HOME_QUOTE',
-  homeQuote
-});
-
 export const addCategoryQuote = (categoryQuote) => ({
   type: 'ADD_CATEGORY_QUOTE',
   categoryQuote

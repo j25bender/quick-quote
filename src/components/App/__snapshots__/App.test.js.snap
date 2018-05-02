@@ -18,52 +18,16 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Header />,
+        <Connect(Header) />,
         <Switch>
+          <Route
+                    component={[Function]}
+                    path="/"
+          />
           <Route
                     component={[Function]}
                     exact={true}
                     path="/favorites"
-          />
-          <Route
-                    component={[Function]}
-                    path="/home"
-          />
-          <Route
-                    component={[Function]}
-                    path="/random"
-          />
-          <Route
-                    component={[Function]}
-                    path="/motivation"
-          />
-          <Route
-                    component={[Function]}
-                    path="/positive"
-          />
-          <Route
-                    component={[Function]}
-                    path="/life"
-          />
-          <Route
-                    component={[Function]}
-                    path="/funny"
-          />
-          <Route
-                    component={[Function]}
-                    path="/love"
-          />
-          <Route
-                    component={[Function]}
-                    path="/students"
-          />
-          <Route
-                    component={[Function]}
-                    path="/inspiration"
-          />
-          <Route
-                    component={[Function]}
-                    path="/meditation"
           />
 </Switch>,
       ],
@@ -88,55 +52,30 @@ ShallowWrapper {
           "children": Array [
             <Route
               component={[Function]}
+              path="/"
+/>,
+            <Route
+              component={[Function]}
               exact={true}
               path="/favorites"
 />,
-            Array [
-              <Route
-                component={[Function]}
-                path="/home"
-/>,
-              <Route
-                component={[Function]}
-                path="/random"
-/>,
-              <Route
-                component={[Function]}
-                path="/motivation"
-/>,
-              <Route
-                component={[Function]}
-                path="/positive"
-/>,
-              <Route
-                component={[Function]}
-                path="/life"
-/>,
-              <Route
-                component={[Function]}
-                path="/funny"
-/>,
-              <Route
-                component={[Function]}
-                path="/love"
-/>,
-              <Route
-                component={[Function]}
-                path="/students"
-/>,
-              <Route
-                component={[Function]}
-                path="/inspiration"
-/>,
-              <Route
-                component={[Function]}
-                path="/meditation"
-/>,
-            ],
+            undefined,
           ],
         },
         "ref": null,
         "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "component": [Function],
+              "path": "/",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           Object {
             "instance": null,
             "key": undefined,
@@ -150,126 +89,7 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/home",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/random",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/motivation",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "3",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/positive",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "4",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/life",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "5",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/funny",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "6",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/love",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "7",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/students",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "8",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/inspiration",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "9",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/meditation",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          undefined,
         ],
         "type": [Function],
       },
@@ -283,52 +103,16 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <Header />,
+          <Connect(Header) />,
           <Switch>
+            <Route
+                        component={[Function]}
+                        path="/"
+            />
             <Route
                         component={[Function]}
                         exact={true}
                         path="/favorites"
-            />
-            <Route
-                        component={[Function]}
-                        path="/home"
-            />
-            <Route
-                        component={[Function]}
-                        path="/random"
-            />
-            <Route
-                        component={[Function]}
-                        path="/motivation"
-            />
-            <Route
-                        component={[Function]}
-                        path="/positive"
-            />
-            <Route
-                        component={[Function]}
-                        path="/life"
-            />
-            <Route
-                        component={[Function]}
-                        path="/funny"
-            />
-            <Route
-                        component={[Function]}
-                        path="/love"
-            />
-            <Route
-                        component={[Function]}
-                        path="/students"
-            />
-            <Route
-                        component={[Function]}
-                        path="/inspiration"
-            />
-            <Route
-                        component={[Function]}
-                        path="/meditation"
             />
 </Switch>,
         ],
@@ -353,55 +137,30 @@ ShallowWrapper {
             "children": Array [
               <Route
                 component={[Function]}
+                path="/"
+/>,
+              <Route
+                component={[Function]}
                 exact={true}
                 path="/favorites"
 />,
-              Array [
-                <Route
-                  component={[Function]}
-                  path="/home"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/random"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/motivation"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/positive"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/life"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/funny"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/love"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/students"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/inspiration"
-/>,
-                <Route
-                  component={[Function]}
-                  path="/meditation"
-/>,
-              ],
+              undefined,
             ],
           },
           "ref": null,
           "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "component": [Function],
+                "path": "/",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             Object {
               "instance": null,
               "key": undefined,
@@ -415,126 +174,7 @@ ShallowWrapper {
               "rendered": null,
               "type": [Function],
             },
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/home",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/random",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/motivation",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "3",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/positive",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "4",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/life",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "5",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/funny",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "6",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/love",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "7",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/students",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "8",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/inspiration",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "9",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/meditation",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
+            undefined,
           ],
           "type": [Function],
         },
